@@ -4,216 +4,421 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Enrique Neri · Producción cinematográfica inmobiliaria — Cuernavaca</title>
-<meta name="description" content="Producción de video para propiedades de alto valor en Morelos. Dirección, narrativa y gradación de color. 20 años dirigiendo campañas publicitarias.">
+<meta name="description" content="Producción cinematográfica para propiedades de alto valor en Morelos. Dirección, narrativa y gradación de color. 20 años dirigiendo campañas.">
 <meta property="og:title" content="Enrique Neri · Producción cinematográfica inmobiliaria">
-<meta property="og:description" content="El video de $1,200 muestra la casa. El nuestro la hace deseable.">
+<meta property="og:description" content="La casa no se vende sola. La historia sí.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void:#0A0A0B; --coal:#141416; --smoke:#1D1D20;
-    --bone:#F2EFE9; --ash:#9A968E; --dim:#6E6A64;
-    --gold:#C9A961; --gold-d:#8A6D2F; --line:rgba(201,169,97,.22);
-    --serif:'Cormorant Garamond',Georgia,serif;
+    --night:#07090C; --deep:#0C1116; --panel:#111820; --edge:#1C2731;
+    --paper:#EFEDE8; --mute:#8C97A0; --faint:#5A656E;
+    --teal:#3FA9A0; --teal-d:#1D5C58;
+    --amber:#E8A33D; --amber-d:#8A5E1C; --ember:#D97435;
+    --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
     --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    font-family:var(--sans);background:var(--void);color:var(--bone);
-    line-height:1.6;-webkit-font-smoothing:antialiased;font-weight:300;
+    font-family:var(--sans);background:var(--night);color:var(--paper);
+    line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
-  .wrap{max-width:1080px;margin:0 auto;padding:0 26px;}
-  .narrow{max-width:660px;margin:0 auto;}
+  .grain{
+    position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.16;mix-blend-mode:overlay;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .narrow{max-width:680px;margin:0 auto;}
   a{color:inherit;text-decoration:none;}
 
-  .rule{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600;}
-  h1,h2,h3{font-family:var(--serif);font-weight:300;letter-spacing:-.01em;line-height:1.08;}
-  h1{font-size:clamp(42px,9vw,86px);}
-  h2{font-size:clamp(32px,5.5vw,52px);margin:18px 0 16px;}
-  h3{font-size:26px;margin-bottom:8px;}
-  em{font-style:italic;color:var(--gold);}
-  p{font-size:16px;color:var(--ash);}
-  .lead{font-size:18px;line-height:1.65;}
+  .mono{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;}
+  h1,h2{font-weight:200;letter-spacing:-.035em;line-height:1.02;}
+  h1{font-size:clamp(40px,8.4vw,82px);}
+  h2{font-size:clamp(30px,5vw,50px);}
+  h3{font-size:20px;font-weight:500;letter-spacing:-.01em;}
+  strong{font-weight:600;color:#fff;}
+  .amber{color:var(--amber);}
+  .teal{color:var(--teal);}
+  p{font-size:16px;color:var(--mute);}
+  .lead{font-size:17.5px;line-height:1.68;}
 
-  header.hero{
-    min-height:96vh;display:flex;flex-direction:column;justify-content:center;
-    padding:90px 0 60px;position:relative;
-    background:radial-gradient(120% 90% at 50% 0%,#1A1A1D 0%,var(--void) 62%);
+  /* ---------- HERO: encuadre de visor ---------- */
+  .hero{padding:64px 0 0;position:relative;}
+  .slate{
+    display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap;
   }
-  .hero h1{margin:26px 0 24px;}
-  .hero .lead{max-width:560px;}
-  .heroactions{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px;}
-  .scrollhint{
-    position:absolute;bottom:34px;left:26px;font-size:10.5px;letter-spacing:.28em;
-    text-transform:uppercase;color:var(--dim);
+  .rec{display:flex;align-items:center;gap:7px;color:var(--ember);}
+  .recdot{width:8px;height:8px;border-radius:50%;background:var(--ember);animation:blink 1.6s infinite;}
+  @keyframes blink{0%,45%{opacity:1}50%,95%{opacity:.15}100%{opacity:1}}
+  .tc{color:var(--teal);}
+  .slate .sep{color:var(--edge);}
+
+  .viewer{position:relative;border:1px solid var(--edge);background:var(--deep);overflow:hidden;}
+  .viewer .bars{position:absolute;left:0;right:0;height:9%;background:#000;z-index:3;}
+  .viewer .bars.t{top:0;} .viewer .bars.b{bottom:0;}
+  .thirds{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.2;}
+  .thirds i{position:absolute;background:var(--paper);}
+  .thirds i.v{top:0;bottom:0;width:1px;} .thirds i.h{left:0;right:0;height:1px;}
+  .corner{position:absolute;width:26px;height:26px;border:2px solid var(--amber);z-index:4;opacity:.85;}
+  .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0;}
+  .corner.tr{top:14px;right:14px;border-left:0;border-bottom:0;}
+  .corner.bl{bottom:14px;left:14px;border-right:0;border-top:0;}
+  .corner.br{bottom:14px;right:14px;border-left:0;border-top:0;}
+  .viewer svg.villa{display:block;width:100%;height:auto;}
+  .vmeta{
+    position:absolute;bottom:calc(9% + 12px);left:16px;right:16px;z-index:5;
+    display:flex;justify-content:space-between;color:var(--mute);
   }
 
+  .herotext{padding:44px 0 0;}
+  .herotext h1{margin:18px 0 20px;}
+  .heroactions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;}
+
+  /* ---------- botones ---------- */
   .btn{
-    display:inline-block;padding:16px 30px;font-size:14px;font-weight:600;
-    letter-spacing:.09em;text-transform:uppercase;border-radius:2px;
-    transition:all .25s ease;border:1px solid var(--gold);
+    display:inline-block;padding:15px 28px;font-family:var(--mono);font-size:11.5px;
+    letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--amber);
+    transition:all .22s ease;cursor:pointer;
   }
-  .btn.solid{background:var(--gold);color:var(--void);}
-  .btn.solid:hover{background:var(--bone);border-color:var(--bone);}
-  .btn.line{color:var(--gold);}
-  .btn.line:hover{background:rgba(201,169,97,.1);}
-  .btn.block{display:block;text-align:center;width:100%;}
+  .btn.solid{background:var(--amber);color:var(--night);font-weight:500;}
+  .btn.solid:hover{background:#fff;border-color:#fff;}
+  .btn.line{color:var(--amber);}
+  .btn.line:hover{background:rgba(232,163,61,.12);}
+  .btn.teal{border-color:var(--teal);color:var(--teal);}
+  .btn.teal:hover{background:rgba(63,169,160,.12);}
+  .btn.block{display:block;width:100%;text-align:center;}
 
-  section{padding:96px 0;border-top:1px solid rgba(255,255,255,.07);}
-  .shead{margin-bottom:52px;}
-
-  .contrast{display:grid;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);}
-  .contrast > div{background:var(--void);padding:34px 30px;}
-  .contrast .tag{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;}
-  .contrast .mine .tag{color:var(--gold);}
-  .contrast ul{list-style:none;}
-  .contrast li{font-size:15.5px;color:var(--ash);padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);}
-  .contrast li:last-child{border:0;}
-  .contrast .mine li{color:var(--bone);}
-
-  .tiers{display:grid;gap:20px;}
-  .tier{
-    border:1px solid rgba(255,255,255,.1);padding:34px 28px 30px;position:relative;
-    background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);
+  /* ---------- filmstrip divisor ---------- */
+  .strip{height:26px;background:var(--deep);border-top:1px solid var(--edge);
+    border-bottom:1px solid var(--edge);position:relative;overflow:hidden;}
+  .strip:before{
+    content:"";position:absolute;inset:6px 0;
+    background-image:repeating-linear-gradient(90deg,var(--night) 0 9px,transparent 9px 24px);
   }
-  .tier.feature{border-color:var(--gold);background:linear-gradient(180deg,rgba(201,169,97,.07),transparent);}
-  .badge{
-    position:absolute;top:-11px;left:28px;background:var(--gold);color:var(--void);
-    font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:5px 12px;
-  }
-  .tier .for{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);}
-  .tier .nm{font-family:var(--serif);font-size:34px;margin:10px 0 4px;}
-  .tier .pr{font-size:38px;font-weight:200;font-family:var(--serif);color:var(--gold);margin-bottom:2px;}
-  .tier .pr small{font-size:14px;font-family:var(--sans);color:var(--dim);font-weight:400;}
-  .tier .note{font-size:13px;color:var(--dim);margin-bottom:20px;}
-  .tier ul{list-style:none;margin-bottom:24px;}
-  .tier li{font-size:14.5px;color:var(--ash);padding:8px 0 8px 20px;position:relative;}
-  .tier li:before{content:"—";position:absolute;left:0;color:var(--gold-d);}
 
+  /* ---------- secciones ---------- */
+  section{padding:88px 0;}
+  .shead{margin-bottom:46px;}
+  .clap{display:inline-flex;align-items:center;gap:11px;margin-bottom:16px;}
+  .clap svg{width:26px;height:26px;flex:0 0 26px;}
+  .clap span{color:var(--teal);}
+
+  /* ---------- comparación ---------- */
+  .vs{display:grid;gap:16px;}
+  .vscol{border:1px solid var(--edge);padding:28px 24px;background:var(--deep);}
+  .vscol.good{border-color:var(--teal-d);background:linear-gradient(180deg,rgba(63,169,160,.06),transparent);}
+  .vscol .lbl{margin-bottom:18px;color:var(--faint);}
+  .vscol.good .lbl{color:var(--teal);}
+  .vscol ul{list-style:none;}
+  .vscol li{font-size:15px;color:var(--mute);padding:10px 0 10px 22px;position:relative;
+    border-bottom:1px solid rgba(255,255,255,.05);}
+  .vscol li:last-child{border:0;}
+  .vscol li:before{content:"×";position:absolute;left:2px;color:var(--faint);}
+  .vscol.good li{color:var(--paper);}
+  .vscol.good li:before{content:"✦";color:var(--teal);font-size:11px;top:12px;}
+
+  /* ---------- paquetes como fotogramas ---------- */
+  .frames{display:grid;gap:22px;}
+  .frame{
+    background:var(--deep);border:1px solid var(--edge);position:relative;
+    padding:30px 30px 26px;
+  }
+  .frame:before,.frame:after{
+    content:"";position:absolute;top:0;bottom:0;width:12px;
+    background-image:repeating-linear-gradient(180deg,transparent 0 8px,var(--night) 8px 15px);
+  }
+  .frame:before{left:0;} .frame:after{right:0;}
+  .frame > *{position:relative;z-index:1;}
+  .frame.hero-tier{border-color:var(--amber-d);
+    background:linear-gradient(180deg,rgba(232,163,61,.07),var(--deep) 60%);}
+  .ftag{position:absolute;top:-1px;right:12px;background:var(--amber);color:var(--night);
+    font-family:var(--mono);font-size:10px;letter-spacing:.16em;padding:5px 10px;z-index:2;}
+  .fscene{color:var(--faint);margin-bottom:14px;}
+  .fname{font-size:29px;font-weight:200;letter-spacing:-.03em;margin-bottom:4px;}
+  .ffor{font-size:13px;color:var(--teal);margin-bottom:18px;}
+  .fprice{font-size:40px;font-weight:200;letter-spacing:-.04em;color:var(--amber);}
+  .fprice sup{font-size:16px;vertical-align:super;font-weight:300;}
+  .fnote{font-size:12px;color:var(--faint);font-family:var(--mono);letter-spacing:.1em;margin-bottom:22px;}
+  .frame ul{list-style:none;margin-bottom:24px;}
+  .frame li{font-size:14.5px;color:var(--mute);padding:8px 0 8px 20px;position:relative;}
+  .frame li:before{content:"";position:absolute;left:0;top:16px;width:9px;height:1px;background:var(--teal);}
+
+  /* ---------- proceso con diafragma ---------- */
   .proc{display:grid;gap:0;}
-  .pstep{display:grid;grid-template-columns:70px 1fr;gap:20px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,.07);}
-  .pstep .pn{font-family:var(--serif);font-size:44px;color:var(--gold-d);line-height:.9;}
-  .pstep h3{font-size:21px;margin-bottom:5px;}
-  .pstep p{font-size:15px;}
+  .pstep{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:24px 0;
+    border-bottom:1px solid var(--edge);align-items:start;}
+  .pstep .pn{font-family:var(--mono);font-size:13px;color:var(--amber);padding-top:4px;letter-spacing:.1em;}
+  .pstep p{font-size:15px;margin-top:4px;}
 
-  .req{display:grid;gap:20px;}
-  .reqcard{border:1px solid rgba(255,255,255,.1);padding:28px 24px;}
-  .reqcard .rt{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
-  .reqcard ul{list-style:none;}
-  .reqcard li{font-size:14.5px;color:var(--ash);padding:7px 0 7px 18px;position:relative;}
-  .reqcard li:before{content:"·";position:absolute;left:4px;color:var(--gold);font-size:20px;line-height:1;}
+  /* ---------- brief ---------- */
+  .brief{display:grid;gap:16px;}
+  .bcard{border:1px solid var(--edge);padding:26px 24px;background:var(--deep);}
+  .bcard .bt{margin-bottom:16px;color:var(--amber);}
+  .bcard.out .bt{color:var(--teal);}
+  .bcard ul{list-style:none;}
+  .bcard li{font-size:14.5px;color:var(--mute);padding:8px 0 8px 20px;position:relative;}
+  .bcard li:before{content:"›";position:absolute;left:3px;color:var(--faint);}
 
-  form{margin-top:8px;}
-  .field{margin-bottom:18px;}
-  label{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:8px;}
+  /* ---------- formulario ---------- */
+  .field{margin-bottom:16px;}
+  label{display:block;margin-bottom:8px;color:var(--faint);font-family:var(--mono);
+    font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;}
   input,select,textarea{
-    width:100%;background:var(--coal);border:1px solid rgba(255,255,255,.13);
-    color:var(--bone);padding:14px 15px;font-family:var(--sans);font-size:15.5px;
-    border-radius:2px;font-weight:300;
+    width:100%;background:var(--panel);border:1px solid var(--edge);color:var(--paper);
+    padding:14px 15px;font-family:var(--sans);font-size:15.5px;font-weight:300;
   }
-  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);}
-  select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;background-size:6px 6px;background-repeat:no-repeat;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--amber);}
+  select{appearance:none;
+    background-image:linear-gradient(45deg,transparent 50%,var(--amber) 50%),linear-gradient(135deg,var(--amber) 50%,transparent 50%);
+    background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;
+    background-size:6px 6px;background-repeat:no-repeat;}
   .row2{display:grid;gap:14px;}
-  .fnote{font-size:12.5px;color:var(--dim);margin-top:12px;text-align:center;}
+  .fhint{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--faint);
+    margin-top:14px;text-align:center;}
 
-  .trust{display:grid;gap:18px;}
-  .titem{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.07);}
-  .titem b{display:block;font-size:15.5px;color:var(--bone);font-weight:500;margin-bottom:5px;}
-  .titem span{font-size:14.5px;color:var(--ash);}
+  /* ---------- confianza ---------- */
+  .tr{padding:20px 0;border-bottom:1px solid var(--edge);display:grid;
+    grid-template-columns:34px 1fr;gap:14px;align-items:start;}
+  .tr svg{width:22px;height:22px;margin-top:2px;}
+  .tr b{display:block;font-size:15.5px;font-weight:500;color:var(--paper);margin-bottom:3px;}
+  .tr span{font-size:14.5px;color:var(--mute);}
 
-  blockquote{
-    font-family:var(--serif);font-size:clamp(26px,4.4vw,40px);line-height:1.28;
-    color:var(--bone);font-style:italic;font-weight:300;
-  }
-  blockquote cite{
-    display:block;font-family:var(--sans);font-style:normal;font-size:11px;
-    letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-top:26px;
-  }
+  blockquote{font-size:clamp(24px,4vw,38px);font-weight:200;line-height:1.3;letter-spacing:-.03em;}
+  blockquote cite{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--amber);margin-top:24px;font-style:normal;}
 
-  footer{padding:70px 0 60px;border-top:1px solid rgba(255,255,255,.07);}
-  .fname{font-family:var(--serif);font-size:30px;margin-bottom:6px;}
+  footer{padding:60px 0 56px;border-top:1px solid var(--edge);}
+  footer .fn{font-size:24px;font-weight:200;letter-spacing:-.02em;margin-bottom:6px;}
   footer p{font-size:14px;}
-  .legal{font-size:12px;color:var(--dim);margin-top:26px;line-height:1.7;}
+  .legal{font-size:12px;color:var(--faint);margin-top:22px;line-height:1.7;}
 
-  @media(min-width:760px){
-    .contrast{grid-template-columns:1fr 1fr;}
-    .tiers{grid-template-columns:repeat(3,1fr);}
-    .req{grid-template-columns:1fr 1fr;}
+  @media(min-width:820px){
+    .vs{grid-template-columns:1fr 1fr;}
+    .frames{grid-template-columns:repeat(3,1fr);}
+    .brief{grid-template-columns:1fr 1fr;}
     .row2{grid-template-columns:1fr 1fr;}
-    section{padding:120px 0;}
+    section{padding:112px 0;}
+    .herotext{padding:56px 0 0;}
   }
 </style>
 </head>
 <body>
 
-<header class="hero">
+<svg class="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+
+<div class="hero">
   <div class="wrap">
-    <div class="rule">Cuernavaca · Morelos</div>
-    <h1>La casa no se<br>vende sola.<br><em>La historia sí.</em></h1>
-    <p class="lead">Producción cinematográfica para propiedades de alto valor.
-      Veinte años dirigiendo campañas publicitarias, ahora al servicio de su inventario.</p>
-    <div class="heroactions">
-      <a class="btn solid" href="#agendar">Agendar producción</a>
-      <a class="btn line" href="#paquetes">Ver paquetes</a>
+
+    <div class="slate mono">
+      <span class="rec"><i class="recdot"></i> REC</span>
+      <span class="sep">/</span>
+      <span class="tc" id="tc">00:00:00:00</span>
+      <span class="sep">/</span>
+      <span style="color:var(--mute)">ENRIQUE NERI · CUERNAVACA MOR.</span>
     </div>
+
+    <div class="viewer">
+      <div class="bars t"></div>
+      <div class="bars b"></div>
+      <div class="thirds">
+        <i class="v" style="left:33.33%"></i><i class="v" style="left:66.66%"></i>
+        <i class="h" style="top:33.33%"></i><i class="h" style="top:66.66%"></i>
+      </div>
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="corner bl"></div><div class="corner br"></div>
+
+      <svg class="villa" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#080D12"/><stop offset="46%" stop-color="#132029"/>
+<stop offset="72%" stop-color="#28313033"/><stop offset="100%" stop-color="#0A1015"/>
+</linearGradient>
+<radialGradient id="sun" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#E8A33D" stop-opacity=".55"/>
+<stop offset="45%" stop-color="#C97B2E" stop-opacity=".18"/>
+<stop offset="100%" stop-color="#E8A33D" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#3FA9A0" stop-opacity=".30"/>
+<stop offset="100%" stop-color="#0D1A1E" stop-opacity=".55"/>
+</linearGradient>
+<linearGradient id="warm" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#F5C069"/><stop offset="100%" stop-color="#D08A2C"/>
+</linearGradient>
+</defs>
+
+<rect width="1200" height="560" fill="url(#sky)"/>
+<circle cx="70" cy="292" r="215" fill="url(#sun)"/>
+<circle cx="70" cy="292" r="19" fill="#F0B455" opacity=".9"/>
+
+<g fill="#0E1A20">
+<path d="M0 300 L96 252 L182 288 L268 244 L352 292 L430 268 L470 300 Z"/>
+<path d="M470 300 L560 258 L648 292 L742 250 L836 290 L930 262 L1030 296 L1120 266 L1200 292 L1200 300 Z"/>
+</g>
+<g fill="#0A1319">
+<path d="M0 318 L130 282 L246 314 L360 286 L470 316 L470 330 L0 330 Z"/>
+<path d="M470 316 L600 288 L730 318 L860 290 L990 320 L1110 292 L1200 314 L1200 330 L470 330 Z"/>
+</g>
+
+<g fill="#0B1219" opacity=".93">
+<rect x="150" y="216" width="410" height="158"/>
+<rect x="560" y="180" width="340" height="122"/>
+<rect x="900" y="302" width="162" height="72"/>
+</g>
+<g fill="none" stroke="#EFEDE8" stroke-width="1.5" opacity=".95" stroke-linejoin="round">
+<path d="M150 374 L150 216 L560 216 L560 374"/><path d="M118 216 L592 216"/>
+<path d="M150 294 L560 294"/>
+<path d="M560 302 L560 180 L900 180 L900 302"/><path d="M528 180 L932 180"/>
+<path d="M560 242 L900 242"/>
+<path d="M900 302 L1062 302 L1062 374"/><path d="M878 302 L1084 302"/>
+<path d="M150 374 L1062 374"/>
+</g>
+
+<g fill="#070D12" stroke="#3FA9A0" stroke-width="1" opacity=".85">
+<rect x="176" y="234" width="88" height="54"/><rect x="286" y="234" width="88" height="54"/>
+<rect x="176" y="310" width="88" height="54"/>
+<rect x="586" y="198" width="130" height="38"/>
+</g>
+
+<g fill="url(#warm)" opacity=".72">
+<rect x="396" y="234" width="88" height="54"/><rect x="286" y="310" width="88" height="54"/>
+<rect x="396" y="310" width="88" height="54"/>
+<rect x="742" y="198" width="130" height="38"/>
+<rect x="586" y="254" width="130" height="42"/><rect x="742" y="254" width="130" height="42"/>
+<rect x="922" y="318" width="118" height="46"/>
+</g>
+<g fill="#F5C069" opacity=".16">
+<rect x="392" y="230" width="96" height="62"/><rect x="738" y="250" width="138" height="50"/>
+</g>
+
+<rect x="228" y="398" width="704" height="104" fill="url(#water)" stroke="#3FA9A0" stroke-width="1.1" opacity=".9"/>
+<g opacity=".5">
+<rect x="404" y="400" width="72" height="100" fill="#E8A33D" opacity=".26"/>
+<rect x="596" y="400" width="118" height="100" fill="#E8A33D" opacity=".2"/>
+<rect x="752" y="400" width="118" height="100" fill="#E8A33D" opacity=".14"/>
+</g>
+<g stroke="#8FD8D1" stroke-width="1" opacity=".28">
+<path d="M256 420 L904 420"/><path d="M256 444 L904 444"/>
+<path d="M256 468 L904 468"/><path d="M256 490 L904 490"/>
+</g>
+
+<g stroke="#EFEDE8" fill="none" stroke-linecap="round" opacity=".75">
+<path d="M1112 376 C1108 320 1104 282 1098 250" stroke-width="2.4"/>
+<path d="M1098 250 C1060 236 1030 244 1006 268" stroke-width="1.5"/>
+<path d="M1098 250 C1062 218 1032 210 1004 214" stroke-width="1.5"/>
+<path d="M1098 250 C1128 224 1158 218 1184 228" stroke-width="1.5"/>
+<path d="M1098 250 C1134 240 1166 250 1186 274" stroke-width="1.5"/>
+<path d="M1098 250 C1090 214 1094 190 1106 172" stroke-width="1.5"/>
+<path d="M1098 250 C1076 268 1058 292 1052 314" stroke-width="1.4"/>
+</g>
+<g stroke="#EFEDE8" fill="none" stroke-linecap="round" opacity=".42">
+<path d="M92 376 C90 330 88 300 84 274" stroke-width="2"/>
+<path d="M84 274 C56 262 34 268 16 286" stroke-width="1.3"/>
+<path d="M84 274 C58 246 36 240 16 244" stroke-width="1.3"/>
+<path d="M84 274 C110 252 134 248 154 258" stroke-width="1.3"/>
+<path d="M84 274 C112 268 136 280 150 300" stroke-width="1.3"/>
+<path d="M84 274 C78 244 82 224 92 210" stroke-width="1.3"/>
+</g>
+
+<rect y="502" width="1200" height="58" fill="#070B0F"/>
+<path d="M0 502 L1200 502" stroke="#EFEDE8" stroke-width="1" opacity=".22"/>
+</svg>
+
+      <div class="vmeta mono">
+        <span>50MM · T2.8</span>
+        <span>24 FPS</span>
+        <span style="color:var(--amber)">SCENE 01</span>
+      </div>
+    </div>
+
+    <div class="herotext narrow" style="margin:0;">
+      <div class="mono" style="color:var(--teal)">Producción cinematográfica inmobiliaria</div>
+      <h1>La casa no se<br>vende sola.<br><span class="amber">La historia sí.</span></h1>
+      <p class="lead">Veinte años dirigiendo campañas publicitarias, ahora al servicio de
+        su inventario. Guion, dirección, gradación de color y locución profesional
+        para propiedades de alto valor en Morelos.</p>
+      <div class="heroactions">
+        <a class="btn solid" href="#agendar">Agendar producción</a>
+        <a class="btn line" href="#paquetes">Ver paquetes</a>
+      </div>
+    </div>
+
   </div>
-  <div class="scrollhint">Desliza</div>
-</header>
+</div>
+
+<div class="strip" style="margin-top:80px;"></div>
 
 <section>
   <div class="wrap">
-    <div class="shead narrow">
-      <div class="rule">La diferencia</div>
+    <div class="shead narrow" style="margin-left:0;">
+      <div class="clap">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M3 12h26v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V12z" stroke="#3FA9A0" stroke-width="1.6"/>
+          <path d="M3 12 5 4l24 2-2 6z" stroke="#3FA9A0" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M9 4.6 7 12M15 5.2 13 12.4M21 5.8 19 13" stroke="#E8A33D" stroke-width="1.4"/>
+        </svg>
+        <span class="mono">Escena 02 · La diferencia</span>
+      </div>
       <h2>Grabar una casa<br>lo hace cualquiera.</h2>
-      <p class="lead">Hacer que se vea como la que la gente elige, no.
+      <p class="lead" style="margin-top:14px;">Hacer que se vea como la que la gente elige, no.
         Esta es la distancia entre un video y una producción.</p>
     </div>
 
-    <div class="contrast">
-      <div>
-        <div class="tag">Lo que hay en el mercado</div>
+    <div class="vs">
+      <div class="vscol">
+        <div class="lbl mono">Lo que hay en el mercado</div>
         <ul>
           <li>Alguien que graba cuando puede</li>
           <li>Edición genérica, sin estrategia detrás</li>
           <li>Música de librería gratuita</li>
-          <li>Texto robotizado leído por una app</li>
-          <li>Un video que se parece a todos los del portal</li>
+          <li>Texto robotizado leído por una aplicación</li>
+          <li>Un video idéntico a todos los del portal</li>
         </ul>
       </div>
-      <div class="mine">
-        <div class="tag">Lo que hago yo</div>
+      <div class="vscol good">
+        <div class="lbl mono">Lo que hago yo</div>
         <ul>
           <li>Guion antes de encender la cámara</li>
           <li>Cada plano decidido para que agenden la visita</li>
           <li>Gradación de color y música licenciada</li>
           <li>Locución grabada por voz profesional</li>
-          <li>Un video que lo representa a usted, no solo a la casa</li>
+          <li>Una pieza que lo representa a usted, no solo a la casa</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
+<div class="strip"></div>
+
 <section id="paquetes">
   <div class="wrap">
-    <div class="shead narrow">
-      <div class="rule">Paquetes</div>
-      <h2>El video se cotiza<br>según la propiedad.</h2>
-      <p class="lead">Una casa de doce millones no se anuncia con la misma pieza que un
-        departamento de dos. El presupuesto de producción debe estar a la altura de lo que vende.</p>
+    <div class="shead narrow" style="margin-left:0;">
+      <div class="clap">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="12" stroke="#3FA9A0" stroke-width="1.6"/>
+          <path d="M16 4 26 13M26 13 22 27M22 27 10 27M10 27 6 13M6 13 16 4" stroke="#E8A33D" stroke-width="1.2"/>
+          <circle cx="16" cy="16" r="4.5" stroke="#3FA9A0" stroke-width="1.4"/>
+        </svg>
+        <span class="mono">Escena 03 · Paquetes</span>
+      </div>
+      <h2>El presupuesto se ajusta<br>a la propiedad.</h2>
+      <p class="lead" style="margin-top:14px;">Una casa de doce millones no se anuncia con la
+        misma pieza que un departamento de dos. La producción debe estar a la altura
+        de lo que vende.</p>
     </div>
 
-    <div class="tiers">
+    <div class="frames">
 
-      <div class="tier">
-        <div class="for">Propiedades hasta $3M</div>
-        <div class="nm">Esencial</div>
-        <div class="pr">$1,490</div>
-        <div class="note">Por producción</div>
+      <div class="frame">
+        <div class="fscene mono">Take 01</div>
+        <div class="fname">Esencial</div>
+        <div class="ffor">Propiedades hasta $3M</div>
+        <div class="fprice"><sup>$</sup>1,490</div>
+        <div class="fnote">Por producción</div>
         <ul>
-          <li>Grabación en sitio, hasta 90 minutos</li>
+          <li>Rodaje en sitio, hasta 90 minutos</li>
           <li>Pieza vertical 9:16 de 45 a 60 seg</li>
           <li>Locución profesional grabada</li>
           <li>Datos y precio en pantalla</li>
@@ -222,12 +427,13 @@
         <a class="btn line block" href="#agendar">Agendar</a>
       </div>
 
-      <div class="tier feature">
-        <div class="badge">Recomendado</div>
-        <div class="for">Propiedades de $3M a $10M</div>
-        <div class="nm">Firma</div>
-        <div class="pr">$3,900</div>
-        <div class="note">Por producción</div>
+      <div class="frame hero-tier">
+        <div class="ftag">Recomendado</div>
+        <div class="fscene mono">Take 02</div>
+        <div class="fname">Firma</div>
+        <div class="ffor">Propiedades de $3M a $10M</div>
+        <div class="fprice"><sup>$</sup>3,900</div>
+        <div class="fnote">Por producción</div>
         <ul>
           <li>Guion y storyboard previos</li>
           <li>Rodaje con gimbal y luz controlada</li>
@@ -239,11 +445,12 @@
         <a class="btn solid block" href="#agendar">Agendar</a>
       </div>
 
-      <div class="tier">
-        <div class="for">Desde $10M y desarrollos</div>
-        <div class="nm">Patrimonial</div>
-        <div class="pr">$8,900</div>
-        <div class="note">Por producción</div>
+      <div class="frame">
+        <div class="fscene mono">Take 03</div>
+        <div class="fname">Patrimonial</div>
+        <div class="ffor">Desde $10M y desarrollos</div>
+        <div class="fprice"><sup>$</sup>8,900</div>
+        <div class="fnote">Por producción</div>
         <ul>
           <li>Todo lo del paquete Firma</li>
           <li>Tomas aéreas con dron</li>
@@ -257,35 +464,45 @@
 
     </div>
 
-    <div class="req" style="margin-top:22px;">
-      <div class="reqcard">
-        <div class="rt">Solo edición · $890</div>
-        <p style="font-size:14.5px;margin-bottom:14px;">Usted graba con su equipo,
-          yo lo convierto en una pieza publicable. Incluye locución, textos, música y color.</p>
-        <a class="btn line block" href="enviar.html">Subir mi material</a>
+    <div class="brief" style="margin-top:22px;">
+      <div class="bcard">
+        <div class="bt mono">Solo edición · $890</div>
+        <p style="font-size:14.5px;margin-bottom:18px;">Usted graba con su equipo, yo lo
+          convierto en una pieza publicable. Incluye locución, textos, música y color.</p>
+        <a class="btn teal block" href="enviar.html">Subir mi material</a>
       </div>
-      <div class="reqcard">
-        <div class="rt">Estudio · $3,900 al mes</div>
-        <p style="font-size:14.5px;margin-bottom:14px;">Tres producciones Esencial cada mes
-          con agenda prioritaria. Sale en $1,300 por pieza. Permanencia mínima de tres meses.</p>
-        <a class="btn line block" href="#agendar">Solicitar</a>
+      <div class="bcard">
+        <div class="bt mono">Estudio · $3,900 al mes</div>
+        <p style="font-size:14.5px;margin-bottom:18px;">Tres producciones Esencial cada mes con
+          agenda prioritaria. Sale en $1,300 por pieza. Permanencia mínima de tres meses.</p>
+        <a class="btn teal block" href="#agendar">Solicitar</a>
       </div>
     </div>
   </div>
 </section>
 
+<div class="strip"></div>
+
 <section>
   <div class="wrap">
-    <div class="shead narrow">
-      <div class="rule">Brief de producción</div>
+    <div class="shead narrow" style="margin-left:0;">
+      <div class="clap">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect x="2" y="9" width="20" height="15" rx="2" stroke="#3FA9A0" stroke-width="1.6"/>
+          <path d="M22 15l8-5v13l-8-5z" stroke="#E8A33D" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="8.5" cy="6" r="3" stroke="#3FA9A0" stroke-width="1.4"/>
+          <circle cx="16.5" cy="6" r="3" stroke="#3FA9A0" stroke-width="1.4"/>
+        </svg>
+        <span class="mono">Escena 04 · Brief de producción</span>
+      </div>
       <h2>Qué necesito<br>y qué recibe.</h2>
-      <p class="lead">Sin sorpresas y sin letras chiquitas. Esto es lo que hace que una
-        producción salga a tiempo y quede bien.</p>
+      <p class="lead" style="margin-top:14px;">Sin sorpresas y sin letras chiquitas.
+        Esto es lo que hace que una producción salga a tiempo y quede bien.</p>
     </div>
 
-    <div class="req">
-      <div class="reqcard">
-        <div class="rt">Lo que necesito de usted</div>
+    <div class="brief">
+      <div class="bcard">
+        <div class="bt mono">Lo que necesito de usted</div>
         <ul>
           <li>Acceso libre a la propiedad el día del rodaje</li>
           <li>Inmueble limpio, ordenado e iluminado</li>
@@ -296,8 +513,8 @@
           <li>Reserva con dos días de anticipación</li>
         </ul>
       </div>
-      <div class="reqcard">
-        <div class="rt">Lo que usted recibe</div>
+      <div class="bcard out">
+        <div class="bt mono">Lo que usted recibe</div>
         <ul>
           <li>Archivo MP4 listo para publicar</li>
           <li>Vertical 9:16 optimizado para Reels y TikTok</li>
@@ -312,40 +529,60 @@
   </div>
 </section>
 
+<div class="strip"></div>
+
 <section>
   <div class="wrap">
-    <div class="shead narrow">
-      <div class="rule">Proceso</div>
+    <div class="shead narrow" style="margin-left:0;">
+      <div class="clap">
+        <svg viewBox="0 0 32 32" fill="none">
+          <rect x="4" y="6" width="24" height="21" rx="2" stroke="#3FA9A0" stroke-width="1.6"/>
+          <path d="M4 12h24" stroke="#3FA9A0" stroke-width="1.6"/>
+          <path d="M11 3v5M21 3v5" stroke="#E8A33D" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="11" cy="18" r="1.6" fill="#E8A33D"/>
+          <circle cx="16" cy="18" r="1.6" fill="#3FA9A0"/>
+          <circle cx="21" cy="18" r="1.6" fill="#3FA9A0"/>
+        </svg>
+        <span class="mono">Escena 05 · Proceso</span>
+      </div>
       <h2>De la llamada<br>a la publicación.</h2>
     </div>
 
-    <div class="proc narrow">
-      <div class="pstep"><div class="pn">01</div>
+    <div class="proc narrow" style="margin-left:0;">
+      <div class="pstep"><div class="pn mono">01</div>
         <div><h3>Agenda</h3><p>Elige fecha, hora y dirección aquí abajo.
           Confirmo por WhatsApp en menos de dos horas.</p></div></div>
-      <div class="pstep"><div class="pn">02</div>
+      <div class="pstep"><div class="pn mono">02</div>
         <div><h3>Ficha</h3><p>Llena los datos de la propiedad en el PDF que le mando.
           Diez minutos, y de ahí salen los textos y la locución.</p></div></div>
-      <div class="pstep"><div class="pn">03</div>
-        <div><h3>Rodaje</h3><p>Llego con equipo propio. Entre 60 y 120 minutos
-          según el paquete. Usted no tiene que estar presente.</p></div></div>
-      <div class="pstep"><div class="pn">04</div>
+      <div class="pstep"><div class="pn mono">03</div>
+        <div><h3>Rodaje</h3><p>Llego con equipo propio. Entre 60 y 120 minutos según
+          el paquete. Usted no tiene que estar presente.</p></div></div>
+      <div class="pstep"><div class="pn mono">04</div>
         <div><h3>Guion</h3><p>Le mando los textos y la narrativa para su visto bueno
           antes de grabar la locución.</p></div></div>
-      <div class="pstep"><div class="pn">05</div>
-        <div><h3>Entrega</h3><p>Recibe el video terminado en tres días hábiles,
+      <div class="pstep"><div class="pn mono">05</div>
+        <div><h3>Entrega</h3><p>Recibe la pieza terminada en tres días hábiles,
           con una ronda de ajustes incluida.</p></div></div>
     </div>
   </div>
 </section>
 
+<div class="strip"></div>
+
 <section id="agendar">
   <div class="wrap narrow">
     <div class="shead">
-      <div class="rule">Agendar</div>
+      <div class="clap">
+        <svg viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="13" stroke="#3FA9A0" stroke-width="1.6"/>
+          <path d="M16 8v8l6 4" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="mono">Escena 06 · Agendar</span>
+      </div>
       <h2>Reserve su<br>producción.</h2>
-      <p class="lead">Elija fecha y hora. Al enviar se abre WhatsApp con todos los datos
-        ya escritos — solo tiene que darle enviar.</p>
+      <p class="lead" style="margin-top:14px;">Elija fecha y hora. Al enviar se abre WhatsApp
+        con todos los datos ya escritos — solo tiene que darle enviar.</p>
     </div>
 
     <form id="bookingForm">
@@ -360,12 +597,10 @@
           <option>No estoy seguro, quiero asesoría</option>
         </select>
       </div>
-
       <div class="field">
         <label for="nombre">Su nombre</label>
         <input id="nombre" type="text" placeholder="Nombre y apellido" autocomplete="name">
       </div>
-
       <div class="row2">
         <div class="field">
           <label for="fecha">Fecha del rodaje</label>
@@ -383,92 +618,100 @@
           </select>
         </div>
       </div>
-
       <div class="field">
         <label for="direccion">Dirección de la propiedad</label>
         <input id="direccion" type="text" placeholder="Calle, número y colonia">
       </div>
-
       <div class="field">
         <label for="detalle">Algo que deba saber</label>
         <textarea id="detalle" rows="3" placeholder="Tipo de inmueble, precio de lista, si está habitada..."></textarea>
       </div>
-
-      <button type="submit" class="btn solid block" style="cursor:pointer;font-family:var(--sans);">
-        Enviar solicitud por WhatsApp
-      </button>
-      <p class="fnote">Confirmo disponibilidad el mismo día · Se reserva con dos días de anticipación</p>
+      <button type="submit" class="btn solid block">Enviar solicitud por WhatsApp</button>
+      <p class="fhint">Confirmo disponibilidad el mismo día · Reserva con dos días de anticipación</p>
     </form>
   </div>
 </section>
 
+<div class="strip"></div>
+
 <section>
   <div class="wrap narrow">
     <div class="shead">
-      <div class="rule">Confianza</div>
+      <div class="clap">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M16 3l11 4v9c0 7-4.6 11.4-11 13-6.4-1.6-11-6-11-13V7l11-4z" stroke="#3FA9A0" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M11 16l3.5 3.5L21 13" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="mono">Escena 07 · Confianza</span>
+      </div>
       <h2>Reglas claras,<br>desde el inicio.</h2>
     </div>
 
-    <div class="trust">
-      <div class="titem"><b>Anticipo del 50%</b>
-        <span>Se paga al confirmar la fecha, con transferencia o tarjeta en línea.
-          El resto contra entrega del video terminado. Recibe comprobante de cada pago.</span></div>
-      <div class="titem"><b>Si no le gusta, lo ajusto</b>
-        <span>Una ronda de cambios va incluida en todos los paquetes. En Firma y
-          Patrimonial son dos rondas.</span></div>
-      <div class="titem"><b>Fecha garantizada</b>
-        <span>Si por causa mía no puedo grabar el día acordado, la siguiente producción
-          va sin costo. Su agenda vale.</span></div>
-      <div class="titem"><b>El material es suyo</b>
-        <span>Cesión de derechos para uso comercial ilimitado en sus canales.
-          Conservo los archivos originales 30 días por si necesita otra versión.</span></div>
-      <div class="titem"><b>Facturación</b>
-        <span>Emito factura fiscal. Los precios no incluyen IVA. Viáticos fuera
-          de Cuernavaca se cotizan antes de confirmar.</span></div>
+    <div class="tr">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="13" rx="2" stroke="#E8A33D" stroke-width="1.5"/><path d="M2 10h20" stroke="#E8A33D" stroke-width="1.5"/></svg>
+      <div><b>Anticipo del 50%</b><span>Se paga al confirmar la fecha, con transferencia o
+        tarjeta en línea. El resto contra entrega. Recibe comprobante de cada pago.</span></div>
+    </div>
+    <div class="tr">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 3-6.7" stroke="#E8A33D" stroke-width="1.5" stroke-linecap="round"/><path d="M3 3v5h5" stroke="#E8A33D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><b>Si no le gusta, lo ajusto</b><span>Una ronda de cambios incluida en todos los
+        paquetes. En Firma y Patrimonial son dos rondas.</span></div>
+    </div>
+    <div class="tr">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#E8A33D" stroke-width="1.5"/><path d="M3 10h18M8 2v5M16 2v5" stroke="#E8A33D" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div><b>Fecha garantizada</b><span>Si por causa mía no puedo grabar el día acordado,
+        la siguiente producción va sin costo. Su agenda vale.</span></div>
+    </div>
+    <div class="tr">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v6c0 5-3.4 8.4-8 9.6C7.4 20.4 4 17 4 12V6l8-3z" stroke="#E8A33D" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <div><b>El material es suyo</b><span>Cesión de derechos para uso comercial ilimitado
+        en sus canales. Conservo los originales 30 días por si necesita otra versión.</span></div>
+    </div>
+    <div class="tr">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6z" stroke="#E8A33D" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 2v5h5M9 13h7M9 17h7" stroke="#E8A33D" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div><b>Facturación</b><span>Emito factura fiscal. Los precios no incluyen IVA.
+        Viáticos fuera de Cuernavaca se cotizan antes de confirmar.</span></div>
     </div>
 
-    <div style="margin-top:34px;display:grid;gap:12px;">
+    <div style="margin-top:32px;display:grid;gap:12px;">
       <a class="btn solid block" href="PAGO_ANTICIPO_URL" target="_blank" rel="noopener">Pagar anticipo en línea</a>
-      <a class="btn line block" href="enviar.html">Enviar material y ficha</a>
+      <a class="btn teal block" href="enviar.html">Enviar material y ficha</a>
     </div>
   </div>
 </section>
 
+<div class="strip"></div>
+
 <section>
   <div class="wrap narrow" style="text-align:center;">
-    <blockquote>
-      No estamos vendiendo videos. Estamos profesionalizando la imagen del asesor
-      inmobiliario en Morelos.
-      <cite>Enrique Neri</cite>
-    </blockquote>
-    <a class="btn solid" style="margin-top:44px;" href="#agendar">Agendar producción</a>
+    <blockquote>No estamos vendiendo videos. Estamos profesionalizando la imagen del
+      asesor inmobiliario en Morelos.
+      <cite>Enrique Neri</cite></blockquote>
+    <a class="btn solid" style="margin-top:40px;" href="#agendar">Agendar producción</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap narrow">
-    <div class="fname">Enrique Neri</div>
+    <div class="fn">Enrique Neri</div>
     <p>Producción cinematográfica inmobiliaria · Cuernavaca, Morelos<br>
-      <a href="mailto:emtzneri@icloud.com" style="color:var(--gold);">emtzneri@icloud.com</a></p>
-    <p class="legal">Precios en pesos mexicanos, no incluyen IVA. La cotización final
-      depende de la ubicación, el tamaño del inmueble y los requerimientos de rodaje.
+      <a href="https://wa.me/527779855687" style="color:var(--amber);">777 985 5687</a> ·
+      <a href="mailto:emtzneri@icloud.com" style="color:var(--amber);">emtzneri@icloud.com</a></p>
+    <p class="legal">Precios en pesos mexicanos, no incluyen IVA. La cotización final depende
+      de la ubicación, el tamaño del inmueble y los requerimientos de rodaje.
       Reserva sujeta a disponibilidad de agenda.</p>
   </div>
 </footer>
 
 <script>
-  var WA = "52XXXXXXXXXX";
+  var WA = "527779855687";
+
   document.getElementById('bookingForm').addEventListener('submit', function(e){
     e.preventDefault();
     var g = function(id){ return (document.getElementById(id).value || '').trim(); };
     var f = g('fecha');
-    if (f) {
-      var p = f.split('-');
-      f = p[2] + '/' + p[1] + '/' + p[0];
-    }
-    var L = [];
-    L.push('Hola Enrique, quiero agendar una produccion.');
-    L.push('');
+    if (f){ var p = f.split('-'); f = p[2] + '/' + p[1] + '/' + p[0]; }
+    var L = ['Hola Enrique, quiero agendar una produccion.', ''];
     L.push('Paquete: ' + g('paquete'));
     if (g('nombre'))    L.push('Nombre: ' + g('nombre'));
     if (f)              L.push('Fecha: ' + f);
@@ -478,9 +721,16 @@
     window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(L.join('\n')), '_blank');
   });
 
-  var today = new Date();
-  today.setDate(today.getDate() + 2);
-  document.getElementById('fecha').min = today.toISOString().split('T')[0];
+  var d = new Date(); d.setDate(d.getDate() + 2);
+  document.getElementById('fecha').min = d.toISOString().split('T')[0];
+
+  var f0 = 0, tcEl = document.getElementById('tc');
+  setInterval(function(){
+    f0++;
+    var fr = f0 % 24, s = Math.floor(f0/24)%60, m = Math.floor(f0/1440)%60;
+    var z = function(n){ return (n<10?'0':'') + n; };
+    tcEl.textContent = '00:' + z(m) + ':' + z(s) + ':' + z(fr);
+  }, 42);
 </script>
 
 </body>

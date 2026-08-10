@@ -12,9 +12,11 @@ Producción cinematográfica inmobiliaria — Cuernavaca, Morelos.
 
 ## Antes de publicar — reemplazar
 
-1. `52XXXXXXXXXX` → número de WhatsApp con lada de país, sin espacios.
-   Aparece en `index.html` (variable `WA` del script y enlace final) y en `enviar.html`.
-2. `PAGO_ANTICIPO_URL` → liga de cobro de Mercado Pago o Stripe.
+WhatsApp ya configurado: **777 985 5687**
+
+Falta solo una cosa:
+
+1. `PAGO_ANTICIPO_URL` → liga de cobro de Mercado Pago o Stripe.
    Aparece en `index.html` y `enviar.html`.
 
 ## Paquetes vigentes
