@@ -3,17 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Enrique Neri · Producción cinematográfica inmobiliaria — Cuernavaca</title>
-<meta name="description" content="Producción cinematográfica para propiedades de alto valor en Morelos. Dirección, narrativa y gradación de color. 20 años dirigiendo campañas.">
-<meta property="og:title" content="Enrique Neri · Producción cinematográfica inmobiliaria">
-<meta property="og:description" content="La casa no se vende sola. La historia sí.">
+<title>Enrique Neri · Video inmobiliario en Cuernavaca</title>
+<meta name="description" content="Producción de video para asesores inmobiliarios en Morelos. Guion, rodaje, locución profesional y entrega lista para publicar. Agenda en un minuto.">
+
+<!-- ======= VISTA PREVIA AL COMPARTIR EL LINK ======= -->
+<!-- Cambia la URL de abajo por la de tu dominio real cuando publiques -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Enrique Neri">
+<meta property="og:title" content="Tus propiedades no compiten por precio. Compiten por atención.">
+<meta property="og:description" content="Producción de video inmobiliario en Cuernavaca. Agenda tu rodaje en un minuto.">
+<meta property="og:url" content="https://enriqueneri.vercel.app/">
+<meta property="og:image" content="https://enriqueneri.vercel.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#07090C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307090C'/%3E%3Cpath d='M6 25V7l20 18V7' stroke='%23E8A33D' stroke-width='3' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   :root{
     --night:#07090C; --deep:#0C1116; --panel:#111820; --edge:#1C2731;
-    --paper:#EFEDE8; --mute:#8C97A0; --faint:#5A656E;
+    --paper:#EFEDE8; --mute:#98A3AC; --faint:#78838C;
     --teal:#3FA9A0; --teal-d:#1D5C58;
     --amber:#E8A33D; --amber-d:#8A5E1C; --ember:#D97435;
     --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
@@ -23,92 +38,95 @@
   html{scroll-behavior:smooth;}
   body{
     font-family:var(--sans);background:var(--night);color:var(--paper);
-    line-height:1.6;font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    line-height:1.6;font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
-  .grain{
-    position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.16;mix-blend-mode:overlay;
+  /* grano barato: tile rasterizado una sola vez, no filtro vivo a pantalla completa */
+  body:before{
+    content:"";position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
-  .narrow{max-width:680px;margin:0 auto;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px;}
+  .narrow{max-width:700px;}
   a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
 
   .mono{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;}
-  h1,h2{font-weight:200;letter-spacing:-.035em;line-height:1.02;}
-  h1{font-size:clamp(40px,8.4vw,82px);}
-  h2{font-size:clamp(30px,5vw,50px);}
-  h3{font-size:20px;font-weight:500;letter-spacing:-.01em;}
+  h1,h2{font-weight:300;letter-spacing:-.035em;line-height:1.04;}
+  h1{font-size:clamp(36px,7.6vw,72px);}
+  h2{font-size:clamp(28px,4.6vw,46px);}
+  h3{font-size:19px;font-weight:600;letter-spacing:-.01em;}
   strong{font-weight:600;color:#fff;}
-  .amber{color:var(--amber);}
-  .teal{color:var(--teal);}
+  .amber{color:var(--amber);} .teal{color:var(--teal);}
   p{font-size:16px;color:var(--mute);}
-  .lead{font-size:17.5px;line-height:1.68;}
+  .lead{font-size:17.5px;line-height:1.65;}
 
-  /* ---------- HERO: encuadre de visor ---------- */
-  .hero{padding:64px 0 0;position:relative;}
-  .slate{
-    display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap;
-  }
+  /* ---------- HERO ---------- */
+  .hero{padding:38px 0 0;}
+  .slate{display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;}
   .rec{display:flex;align-items:center;gap:7px;color:var(--ember);}
   .recdot{width:8px;height:8px;border-radius:50%;background:var(--ember);animation:blink 1.6s infinite;}
   @keyframes blink{0%,45%{opacity:1}50%,95%{opacity:.15}100%{opacity:1}}
-  .tc{color:var(--teal);}
   .slate .sep{color:var(--edge);}
+  .tc{color:var(--teal);font-variant-numeric:tabular-nums;}
 
-  .viewer{position:relative;border:1px solid var(--edge);background:var(--deep);overflow:hidden;}
-  .viewer .bars{position:absolute;left:0;right:0;height:9%;background:#000;z-index:3;}
-  .viewer .bars.t{top:0;} .viewer .bars.b{bottom:0;}
-  .thirds{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.2;}
-  .thirds i{position:absolute;background:var(--paper);}
-  .thirds i.v{top:0;bottom:0;width:1px;} .thirds i.h{left:0;right:0;height:1px;}
-  .corner{position:absolute;width:26px;height:26px;border:2px solid var(--amber);z-index:4;opacity:.85;}
-  .corner.tl{top:14px;left:14px;border-right:0;border-bottom:0;}
-  .corner.tr{top:14px;right:14px;border-left:0;border-bottom:0;}
-  .corner.bl{bottom:14px;left:14px;border-right:0;border-top:0;}
-  .corner.br{bottom:14px;right:14px;border-left:0;border-top:0;}
-  .viewer svg.villa{display:block;width:100%;height:auto;}
-  .vmeta{
-    position:absolute;bottom:calc(9% + 12px);left:16px;right:16px;z-index:5;
-    display:flex;justify-content:space-between;color:var(--mute);
-  }
+  /* visor con los reels adentro: el elemento firma de la página */
+  .viewer{position:relative;border:1px solid var(--edge);background:var(--deep);padding:34px 22px;overflow:hidden;}
+  .corner{position:absolute;width:22px;height:22px;border:2px solid var(--amber);z-index:4;opacity:.8;}
+  .corner.tl{top:12px;left:12px;border-right:0;border-bottom:0;}
+  .corner.tr{top:12px;right:12px;border-left:0;border-bottom:0;}
+  .corner.bl{bottom:12px;left:12px;border-right:0;border-top:0;}
+  .corner.br{bottom:12px;right:12px;border-left:0;border-top:0;}
 
-  .herotext{padding:44px 0 0;}
-  .herotext h1{margin:18px 0 20px;}
-  .heroactions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;}
+  .reels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .reel{position:relative;aspect-ratio:9/16;background:#0A0F14;border:1px solid var(--edge);overflow:hidden;cursor:pointer;}
+  .reel video{width:100%;height:100%;object-fit:cover;display:block;}
+  .reel .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;z-index:2;
+    background:linear-gradient(transparent,rgba(7,9,12,.92));
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--paper);}
+  .reel .snd{position:absolute;top:8px;right:8px;z-index:3;width:26px;height:26px;border-radius:50%;
+    background:rgba(7,9,12,.7);border:1px solid var(--edge);display:grid;place-items:center;}
+  .reel .snd svg{width:13px;height:13px;}
+  /* estado vacío mientras el reel está en producción */
+  .reel.empty{display:grid;place-items:center;text-align:center;cursor:default;
+    background:repeating-linear-gradient(45deg,#0A0F14 0 9px,#0C1218 9px 18px);}
+  .reel.empty .ph{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);padding:0 8px;line-height:1.9;}
+  .reel.empty .ph b{display:block;color:var(--amber);font-weight:500;}
+
+  .herotext{padding:40px 0 0;}
+  .herotext h1{margin:14px 0 18px;}
+  .heroactions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .microtrust{margin-top:20px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--faint);line-height:2;}
 
   /* ---------- botones ---------- */
   .btn{
-    display:inline-block;padding:15px 28px;font-family:var(--mono);font-size:11.5px;
-    letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--amber);
-    transition:all .22s ease;cursor:pointer;
+    display:inline-block;padding:15px 26px;font-family:var(--mono);font-size:11.5px;
+    letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--amber);
+    transition:background .2s ease,color .2s ease,border-color .2s ease;cursor:pointer;
+    background:none;color:var(--amber);text-align:center;
   }
   .btn.solid{background:var(--amber);color:var(--night);font-weight:500;}
   .btn.solid:hover{background:#fff;border-color:#fff;}
-  .btn.line{color:var(--amber);}
   .btn.line:hover{background:rgba(232,163,61,.12);}
   .btn.teal{border-color:var(--teal);color:var(--teal);}
   .btn.teal:hover{background:rgba(63,169,160,.12);}
-  .btn.block{display:block;width:100%;text-align:center;}
+  .btn.block{display:block;width:100%;}
+  .btn[disabled]{opacity:.5;cursor:not-allowed;}
 
-  /* ---------- filmstrip divisor ---------- */
-  .strip{height:26px;background:var(--deep);border-top:1px solid var(--edge);
+  .strip{height:24px;background:var(--deep);border-top:1px solid var(--edge);
     border-bottom:1px solid var(--edge);position:relative;overflow:hidden;}
-  .strip:before{
-    content:"";position:absolute;inset:6px 0;
-    background-image:repeating-linear-gradient(90deg,var(--night) 0 9px,transparent 9px 24px);
-  }
+  .strip:before{content:"";position:absolute;inset:6px 0;
+    background-image:repeating-linear-gradient(90deg,var(--night) 0 9px,transparent 9px 24px);}
 
-  /* ---------- secciones ---------- */
-  section{padding:88px 0;}
-  .shead{margin-bottom:46px;}
-  .clap{display:inline-flex;align-items:center;gap:11px;margin-bottom:16px;}
-  .clap svg{width:26px;height:26px;flex:0 0 26px;}
-  .clap span{color:var(--teal);}
+  section{padding:76px 0;}
+  .shead{margin-bottom:40px;}
+  .eyebrow{color:var(--teal);margin-bottom:14px;display:block;}
 
   /* ---------- comparación ---------- */
-  .vs{display:grid;gap:16px;}
-  .vscol{border:1px solid var(--edge);padding:28px 24px;background:var(--deep);}
+  .vs{display:grid;gap:14px;}
+  .vscol{border:1px solid var(--edge);padding:26px 22px;background:var(--deep);}
   .vscol.good{border-color:var(--teal-d);background:linear-gradient(180deg,rgba(63,169,160,.06),transparent);}
-  .vscol .lbl{margin-bottom:18px;color:var(--faint);}
+  .vscol .lbl{margin-bottom:16px;color:var(--faint);}
   .vscol.good .lbl{color:var(--teal);}
   .vscol ul{list-style:none;}
   .vscol li{font-size:15px;color:var(--mute);padding:10px 0 10px 22px;position:relative;
@@ -118,95 +136,107 @@
   .vscol.good li{color:var(--paper);}
   .vscol.good li:before{content:"✦";color:var(--teal);font-size:11px;top:12px;}
 
-  /* ---------- paquetes como fotogramas ---------- */
-  .frames{display:grid;gap:22px;}
-  .frame{
-    background:var(--deep);border:1px solid var(--edge);position:relative;
-    padding:30px 30px 26px;
-  }
-  .frame:before,.frame:after{
-    content:"";position:absolute;top:0;bottom:0;width:12px;
-    background-image:repeating-linear-gradient(180deg,transparent 0 8px,var(--night) 8px 15px);
-  }
-  .frame:before{left:0;} .frame:after{right:0;}
-  .frame > *{position:relative;z-index:1;}
+  /* ---------- paquetes ---------- */
+  .frames{display:grid;gap:16px;align-items:start;}
+  .frame{background:var(--deep);border:1px solid var(--edge);position:relative;padding:28px 24px 24px;}
   .frame.hero-tier{border-color:var(--amber-d);
-    background:linear-gradient(180deg,rgba(232,163,61,.07),var(--deep) 60%);}
-  .ftag{position:absolute;top:-1px;right:12px;background:var(--amber);color:var(--night);
-    font-family:var(--mono);font-size:10px;letter-spacing:.16em;padding:5px 10px;z-index:2;}
-  .fscene{color:var(--faint);margin-bottom:14px;}
-  .fname{font-size:29px;font-weight:200;letter-spacing:-.03em;margin-bottom:4px;}
-  .ffor{font-size:13px;color:var(--teal);margin-bottom:18px;}
-  .fprice{font-size:40px;font-weight:200;letter-spacing:-.04em;color:var(--amber);}
-  .fprice sup{font-size:16px;vertical-align:super;font-weight:300;}
-  .fnote{font-size:12px;color:var(--faint);font-family:var(--mono);letter-spacing:.1em;margin-bottom:22px;}
-  .frame ul{list-style:none;margin-bottom:24px;}
+    background:linear-gradient(180deg,rgba(232,163,61,.08),var(--deep) 55%);}
+  .ftag{position:absolute;top:0;right:0;background:var(--amber);color:var(--night);
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;padding:5px 10px;font-weight:500;}
+  .fname{font-size:27px;font-weight:300;letter-spacing:-.03em;margin-bottom:5px;}
+  .ffor{font-size:13px;color:var(--teal);margin-bottom:18px;min-height:19px;}
+  .fprice{font-size:38px;font-weight:300;letter-spacing:-.04em;color:var(--amber);line-height:1.1;}
+  .fprice sup{font-size:15px;vertical-align:super;font-weight:400;}
+  .fprice em{font-style:normal;font-size:15px;color:var(--faint);letter-spacing:0;}
+  .fnote{font-size:11px;color:var(--faint);font-family:var(--mono);letter-spacing:.1em;
+    text-transform:uppercase;margin:5px 0 20px;}
+  .frame ul{list-style:none;margin-bottom:22px;}
   .frame li{font-size:14.5px;color:var(--mute);padding:8px 0 8px 20px;position:relative;}
   .frame li:before{content:"";position:absolute;left:0;top:16px;width:9px;height:1px;background:var(--teal);}
 
-  /* ---------- proceso con diafragma ---------- */
-  .proc{display:grid;gap:0;}
-  .pstep{display:grid;grid-template-columns:64px 1fr;gap:20px;padding:24px 0;
-    border-bottom:1px solid var(--edge);align-items:start;}
-  .pstep .pn{font-family:var(--mono);font-size:13px;color:var(--amber);padding-top:4px;letter-spacing:.1em;}
-  .pstep p{font-size:15px;margin-top:4px;}
+  .mathbox{margin-top:20px;border-left:2px solid var(--teal);padding:16px 20px;background:var(--deep);}
+  .mathbox p{font-size:15px;}
+  .extras{display:grid;gap:12px;margin-top:14px;}
+  .xcard{border:1px solid var(--edge);background:var(--deep);padding:20px 22px;
+    display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;}
+  .xcard div{flex:1 1 240px;}
+  .xcard b{display:block;font-size:15.5px;font-weight:600;margin-bottom:4px;}
+  .xcard span{font-size:14px;color:var(--mute);}
+  .xcard .btn{flex:0 0 auto;padding:12px 20px;}
 
   /* ---------- brief ---------- */
-  .brief{display:grid;gap:16px;}
-  .bcard{border:1px solid var(--edge);padding:26px 24px;background:var(--deep);}
-  .bcard .bt{margin-bottom:16px;color:var(--amber);}
+  .brief{display:grid;gap:14px;}
+  .bcard{border:1px solid var(--edge);padding:24px 22px;background:var(--deep);}
+  .bcard .bt{margin-bottom:15px;color:var(--amber);}
   .bcard.out .bt{color:var(--teal);}
   .bcard ul{list-style:none;}
   .bcard li{font-size:14.5px;color:var(--mute);padding:8px 0 8px 20px;position:relative;}
   .bcard li:before{content:"›";position:absolute;left:3px;color:var(--faint);}
 
+  /* ---------- proceso (secuencia real, por eso va numerado) ---------- */
+  .pstep{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:22px 0;
+    border-bottom:1px solid var(--edge);align-items:start;}
+  .pstep .pn{font-family:var(--mono);font-size:13px;color:var(--amber);padding-top:3px;letter-spacing:.1em;}
+  .pstep p{font-size:15px;margin-top:4px;}
+
   /* ---------- formulario ---------- */
-  .field{margin-bottom:16px;}
-  label{display:block;margin-bottom:8px;color:var(--faint);font-family:var(--mono);
-    font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;}
+  .field{margin-bottom:15px;}
+  label{display:block;margin-bottom:7px;color:var(--faint);font-family:var(--mono);
+    font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;}
   input,select,textarea{
     width:100%;background:var(--panel);border:1px solid var(--edge);color:var(--paper);
-    padding:14px 15px;font-family:var(--sans);font-size:15.5px;font-weight:300;
+    padding:14px 15px;font-family:var(--sans);font-size:16px;font-weight:400;border-radius:0;
   }
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--amber);}
+  input.err,textarea.err{border-color:var(--ember);}
   select{appearance:none;
     background-image:linear-gradient(45deg,transparent 50%,var(--amber) 50%),linear-gradient(135deg,var(--amber) 50%,transparent 50%);
     background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;
     background-size:6px 6px;background-repeat:no-repeat;}
-  .row2{display:grid;gap:14px;}
-  .fhint{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--faint);
-    margin-top:14px;text-align:center;}
+  .row2{display:grid;gap:12px;}
+  .fhint{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;color:var(--faint);
+    margin-top:13px;text-align:center;line-height:1.9;}
+  .formmsg{margin-top:12px;font-size:14px;color:var(--ember);display:none;}
+  .formmsg.on{display:block;}
 
   /* ---------- confianza ---------- */
-  .tr{padding:20px 0;border-bottom:1px solid var(--edge);display:grid;
-    grid-template-columns:34px 1fr;gap:14px;align-items:start;}
-  .tr svg{width:22px;height:22px;margin-top:2px;}
-  .tr b{display:block;font-size:15.5px;font-weight:500;color:var(--paper);margin-bottom:3px;}
+  .tr{padding:19px 0;border-bottom:1px solid var(--edge);display:grid;
+    grid-template-columns:30px 1fr;gap:13px;align-items:start;}
+  .tr svg{width:21px;height:21px;margin-top:2px;}
+  .tr b{display:block;font-size:15.5px;font-weight:600;color:var(--paper);margin-bottom:3px;}
   .tr span{font-size:14.5px;color:var(--mute);}
 
-  blockquote{font-size:clamp(24px,4vw,38px);font-weight:200;line-height:1.3;letter-spacing:-.03em;}
-  blockquote cite{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
-    text-transform:uppercase;color:var(--amber);margin-top:24px;font-style:normal;}
+  blockquote{font-size:clamp(22px,3.6vw,34px);font-weight:300;line-height:1.32;letter-spacing:-.03em;}
+  blockquote cite{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.19em;
+    text-transform:uppercase;color:var(--amber);margin-top:22px;font-style:normal;}
 
-  footer{padding:60px 0 56px;border-top:1px solid var(--edge);}
-  footer .fn{font-size:24px;font-weight:200;letter-spacing:-.02em;margin-bottom:6px;}
+  footer{padding:52px 0 48px;border-top:1px solid var(--edge);}
+  footer .fn{font-size:23px;font-weight:300;letter-spacing:-.02em;margin-bottom:6px;}
   footer p{font-size:14px;}
-  .legal{font-size:12px;color:var(--faint);margin-top:22px;line-height:1.7;}
+  .legal{font-size:12px;color:var(--faint);margin-top:20px;line-height:1.75;}
 
-  @media(min-width:820px){
-    .vs{grid-template-columns:1fr 1fr;}
-    .frames{grid-template-columns:repeat(3,1fr);}
-    .brief{grid-template-columns:1fr 1fr;}
+  @media(min-width:640px){
     .row2{grid-template-columns:1fr 1fr;}
-    section{padding:112px 0;}
-    .herotext{padding:56px 0 0;}
+    .viewer{padding:44px 34px;}
+    .reels{gap:16px;}
+  }
+  @media(min-width:880px){
+    .vs{grid-template-columns:1fr 1fr;}
+    .frames{grid-template-columns:1fr 1.08fr 1fr;}
+    .brief{grid-template-columns:1fr 1fr;}
+    section{padding:104px 0;}
+    .hero{padding:52px 0 0;}
+    .herotext{padding:52px 0 0;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    html{scroll-behavior:auto;}
   }
 </style>
 </head>
 <body>
 
-<svg class="grain"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
-
+<!-- ================= HERO ================= -->
 <div class="hero">
   <div class="wrap">
 
@@ -215,175 +245,65 @@
       <span class="sep">/</span>
       <span class="tc" id="tc">00:00:00:00</span>
       <span class="sep">/</span>
-      <span style="color:var(--mute)">ENRIQUE NERI · CUERNAVACA MOR.</span>
+      <span style="color:var(--mute)">Enrique Neri · Cuernavaca, Mor.</span>
     </div>
 
     <div class="viewer">
-      <div class="bars t"></div>
-      <div class="bars b"></div>
-      <div class="thirds">
-        <i class="v" style="left:33.33%"></i><i class="v" style="left:66.66%"></i>
-        <i class="h" style="top:33.33%"></i><i class="h" style="top:66.66%"></i>
-      </div>
       <div class="corner tl"></div><div class="corner tr"></div>
       <div class="corner bl"></div><div class="corner br"></div>
-
-      <svg class="villa" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0%" stop-color="#080D12"/><stop offset="46%" stop-color="#132029"/>
-<stop offset="72%" stop-color="#28313033"/><stop offset="100%" stop-color="#0A1015"/>
-</linearGradient>
-<radialGradient id="sun" cx="50%" cy="50%" r="50%">
-<stop offset="0%" stop-color="#E8A33D" stop-opacity=".55"/>
-<stop offset="45%" stop-color="#C97B2E" stop-opacity=".18"/>
-<stop offset="100%" stop-color="#E8A33D" stop-opacity="0"/>
-</radialGradient>
-<linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0%" stop-color="#3FA9A0" stop-opacity=".30"/>
-<stop offset="100%" stop-color="#0D1A1E" stop-opacity=".55"/>
-</linearGradient>
-<linearGradient id="warm" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0%" stop-color="#F5C069"/><stop offset="100%" stop-color="#D08A2C"/>
-</linearGradient>
-</defs>
-
-<rect width="1200" height="560" fill="url(#sky)"/>
-<circle cx="70" cy="292" r="215" fill="url(#sun)"/>
-<circle cx="70" cy="292" r="19" fill="#F0B455" opacity=".9"/>
-
-<g fill="#0E1A20">
-<path d="M0 300 L96 252 L182 288 L268 244 L352 292 L430 268 L470 300 Z"/>
-<path d="M470 300 L560 258 L648 292 L742 250 L836 290 L930 262 L1030 296 L1120 266 L1200 292 L1200 300 Z"/>
-</g>
-<g fill="#0A1319">
-<path d="M0 318 L130 282 L246 314 L360 286 L470 316 L470 330 L0 330 Z"/>
-<path d="M470 316 L600 288 L730 318 L860 290 L990 320 L1110 292 L1200 314 L1200 330 L470 330 Z"/>
-</g>
-
-<g fill="#0B1219" opacity=".93">
-<rect x="150" y="216" width="410" height="158"/>
-<rect x="560" y="180" width="340" height="122"/>
-<rect x="900" y="302" width="162" height="72"/>
-</g>
-<g fill="none" stroke="#EFEDE8" stroke-width="1.5" opacity=".95" stroke-linejoin="round">
-<path d="M150 374 L150 216 L560 216 L560 374"/><path d="M118 216 L592 216"/>
-<path d="M150 294 L560 294"/>
-<path d="M560 302 L560 180 L900 180 L900 302"/><path d="M528 180 L932 180"/>
-<path d="M560 242 L900 242"/>
-<path d="M900 302 L1062 302 L1062 374"/><path d="M878 302 L1084 302"/>
-<path d="M150 374 L1062 374"/>
-</g>
-
-<g fill="#070D12" stroke="#3FA9A0" stroke-width="1" opacity=".85">
-<rect x="176" y="234" width="88" height="54"/><rect x="286" y="234" width="88" height="54"/>
-<rect x="176" y="310" width="88" height="54"/>
-<rect x="586" y="198" width="130" height="38"/>
-</g>
-
-<g fill="url(#warm)" opacity=".72">
-<rect x="396" y="234" width="88" height="54"/><rect x="286" y="310" width="88" height="54"/>
-<rect x="396" y="310" width="88" height="54"/>
-<rect x="742" y="198" width="130" height="38"/>
-<rect x="586" y="254" width="130" height="42"/><rect x="742" y="254" width="130" height="42"/>
-<rect x="922" y="318" width="118" height="46"/>
-</g>
-<g fill="#F5C069" opacity=".16">
-<rect x="392" y="230" width="96" height="62"/><rect x="738" y="250" width="138" height="50"/>
-</g>
-
-<rect x="228" y="398" width="704" height="104" fill="url(#water)" stroke="#3FA9A0" stroke-width="1.1" opacity=".9"/>
-<g opacity=".5">
-<rect x="404" y="400" width="72" height="100" fill="#E8A33D" opacity=".26"/>
-<rect x="596" y="400" width="118" height="100" fill="#E8A33D" opacity=".2"/>
-<rect x="752" y="400" width="118" height="100" fill="#E8A33D" opacity=".14"/>
-</g>
-<g stroke="#8FD8D1" stroke-width="1" opacity=".28">
-<path d="M256 420 L904 420"/><path d="M256 444 L904 444"/>
-<path d="M256 468 L904 468"/><path d="M256 490 L904 490"/>
-</g>
-
-<g stroke="#EFEDE8" fill="none" stroke-linecap="round" opacity=".75">
-<path d="M1112 376 C1108 320 1104 282 1098 250" stroke-width="2.4"/>
-<path d="M1098 250 C1060 236 1030 244 1006 268" stroke-width="1.5"/>
-<path d="M1098 250 C1062 218 1032 210 1004 214" stroke-width="1.5"/>
-<path d="M1098 250 C1128 224 1158 218 1184 228" stroke-width="1.5"/>
-<path d="M1098 250 C1134 240 1166 250 1186 274" stroke-width="1.5"/>
-<path d="M1098 250 C1090 214 1094 190 1106 172" stroke-width="1.5"/>
-<path d="M1098 250 C1076 268 1058 292 1052 314" stroke-width="1.4"/>
-</g>
-<g stroke="#EFEDE8" fill="none" stroke-linecap="round" opacity=".42">
-<path d="M92 376 C90 330 88 300 84 274" stroke-width="2"/>
-<path d="M84 274 C56 262 34 268 16 286" stroke-width="1.3"/>
-<path d="M84 274 C58 246 36 240 16 244" stroke-width="1.3"/>
-<path d="M84 274 C110 252 134 248 154 258" stroke-width="1.3"/>
-<path d="M84 274 C112 268 136 280 150 300" stroke-width="1.3"/>
-<path d="M84 274 C78 244 82 224 92 210" stroke-width="1.3"/>
-</g>
-
-<rect y="502" width="1200" height="58" fill="#070B0F"/>
-<path d="M0 502 L1200 502" stroke="#EFEDE8" stroke-width="1" opacity=".22"/>
-</svg>
-
-      <div class="vmeta mono">
-        <span>50MM · T2.8</span>
-        <span>24 FPS</span>
-        <span style="color:var(--amber)">SCENE 01</span>
-      </div>
+      <div class="reels" id="reels"></div>
     </div>
 
-    <div class="herotext narrow" style="margin:0;">
-      <div class="mono" style="color:var(--teal)">Producción cinematográfica inmobiliaria</div>
-      <h1>La casa no se<br>vende sola.<br><span class="amber">La historia sí.</span></h1>
-      <p class="lead">Veinte años dirigiendo campañas publicitarias, ahora al servicio de
-        su inventario. Guion, dirección, gradación de color y locución profesional
-        para propiedades de alto valor en Morelos.</p>
+    <div class="herotext narrow">
+      <span class="mono eyebrow">Producción de video inmobiliario</span>
+      <h1>Tus propiedades no<br>compiten por precio.<br><span class="amber">Compiten por atención.</span></h1>
+      <p class="lead">Vengo de producir radio comercial. Sé qué hace que alguien no cambie
+        de estación en los primeros tres segundos — es exactamente el mismo problema
+        que tiene tu reel. Guion, rodaje, locución y entrega lista para publicar.</p>
       <div class="heroactions">
-        <a class="btn solid" href="#agendar">Agendar producción</a>
-        <a class="btn line" href="#paquetes">Ver paquetes</a>
+        <a class="btn solid" href="#agendar">Agendar mi rodaje</a>
+        <a class="btn line" href="#paquetes">Ver precios</a>
+      </div>
+      <div class="microtrust">
+        Trabajo con oficinas de Century 21 y con Verificados Inmobiliarios Morelos<br>
+        Te confirmo disponibilidad el mismo día
       </div>
     </div>
 
   </div>
 </div>
 
-<div class="strip" style="margin-top:80px;"></div>
+<div class="strip" style="margin-top:72px;"></div>
 
+<!-- ================= LA DIFERENCIA ================= -->
 <section>
   <div class="wrap">
-    <div class="shead narrow" style="margin-left:0;">
-      <div class="clap">
-        <svg viewBox="0 0 32 32" fill="none">
-          <path d="M3 12h26v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V12z" stroke="#3FA9A0" stroke-width="1.6"/>
-          <path d="M3 12 5 4l24 2-2 6z" stroke="#3FA9A0" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M9 4.6 7 12M15 5.2 13 12.4M21 5.8 19 13" stroke="#E8A33D" stroke-width="1.4"/>
-        </svg>
-        <span class="mono">Escena 02 · La diferencia</span>
-      </div>
+    <div class="shead narrow">
+      <span class="mono eyebrow">La diferencia</span>
       <h2>Grabar una casa<br>lo hace cualquiera.</h2>
-      <p class="lead" style="margin-top:14px;">Hacer que se vea como la que la gente elige, no.
-        Esta es la distancia entre un video y una producción.</p>
+      <p class="lead" style="margin-top:13px;">Que se vea como la que la gente elige, no.
+        Esa es la distancia entre un video y una producción.</p>
     </div>
 
     <div class="vs">
       <div class="vscol">
-        <div class="lbl mono">Lo que hay en el mercado</div>
+        <div class="lbl mono">Lo que estás haciendo hoy</div>
         <ul>
-          <li>Alguien que graba cuando puede</li>
-          <li>Edición genérica, sin estrategia detrás</li>
-          <li>Música de librería gratuita</li>
-          <li>Texto robotizado leído por una aplicación</li>
-          <li>Un video idéntico a todos los del portal</li>
+          <li>Grabas con el celular entre visita y visita</li>
+          <li>Editas tú, de noche, cuando ya no tienes cabeza</li>
+          <li>La voz robot de la aplicación lee tu texto</li>
+          <li>Música de librería gratis que ya usaron otros diez</li>
+          <li>Un video idéntico a los cuarenta del portal</li>
         </ul>
       </div>
       <div class="vscol good">
-        <div class="lbl mono">Lo que hago yo</div>
+        <div class="lbl mono">Lo que pasa cuando lo hago yo</div>
         <ul>
-          <li>Guion antes de encender la cámara</li>
-          <li>Cada plano decidido para que agenden la visita</li>
-          <li>Gradación de color y música licenciada</li>
-          <li>Locución grabada por voz profesional</li>
-          <li>Una pieza que lo representa a usted, no solo a la casa</li>
+          <li>Hay guion antes de encender la cámara</li>
+          <li>Cada plano está decidido para que te agenden la visita</li>
+          <li>Color y música licenciada para uso comercial</li>
+          <li>Locución grabada por voz profesional, no sintética</li>
+          <li>Una pieza que te representa a ti, no solo a la casa</li>
         </ul>
       </div>
     </div>
@@ -392,90 +312,93 @@
 
 <div class="strip"></div>
 
+<!-- ================= PAQUETES ================= -->
 <section id="paquetes">
   <div class="wrap">
-    <div class="shead narrow" style="margin-left:0;">
-      <div class="clap">
-        <svg viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="12" stroke="#3FA9A0" stroke-width="1.6"/>
-          <path d="M16 4 26 13M26 13 22 27M22 27 10 27M10 27 6 13M6 13 16 4" stroke="#E8A33D" stroke-width="1.2"/>
-          <circle cx="16" cy="16" r="4.5" stroke="#3FA9A0" stroke-width="1.4"/>
-        </svg>
-        <span class="mono">Escena 03 · Paquetes</span>
-      </div>
-      <h2>El presupuesto se ajusta<br>a la propiedad.</h2>
-      <p class="lead" style="margin-top:14px;">Una casa de doce millones no se anuncia con la
-        misma pieza que un departamento de dos. La producción debe estar a la altura
-        de lo que vende.</p>
+    <div class="shead narrow">
+      <span class="mono eyebrow">Precios</span>
+      <h2>Empieza por una.<br>Quédate por el plan.</h2>
+      <p class="lead" style="margin-top:13px;">Una casa de doce millones no se anuncia con
+        la misma pieza que un departamento de dos. La producción debe estar a la altura
+        de lo que vendes.</p>
     </div>
 
     <div class="frames">
 
       <div class="frame">
-        <div class="fscene mono">Take 01</div>
-        <div class="fname">Esencial</div>
-        <div class="ffor">Propiedades hasta $3M</div>
-        <div class="fprice"><sup>$</sup>1,490</div>
-        <div class="fnote">Por producción</div>
+        <div class="fname">Pieza única</div>
+        <div class="ffor">Para probarme sin comprometerte</div>
+        <div class="fprice"><sup>$</sup>1,490 <em>+ IVA</em></div>
+        <div class="fnote">Una producción</div>
         <ul>
           <li>Rodaje en sitio, hasta 90 minutos</li>
           <li>Pieza vertical 9:16 de 45 a 60 seg</li>
           <li>Locución profesional grabada</li>
           <li>Datos y precio en pantalla</li>
+          <li>Copy sugerido para tu publicación</li>
           <li>Entrega en 3 días hábiles</li>
         </ul>
-        <a class="btn line block" href="#agendar">Agendar</a>
+        <a class="btn line block" href="#agendar" data-pack="Pieza única — $1,490 + IVA">Agendar</a>
       </div>
 
       <div class="frame hero-tier">
-        <div class="ftag">Recomendado</div>
-        <div class="fscene mono">Take 02</div>
-        <div class="fname">Firma</div>
-        <div class="ffor">Propiedades de $3M a $10M</div>
-        <div class="fprice"><sup>$</sup>3,900</div>
-        <div class="fnote">Por producción</div>
+        <div class="ftag">El que más contratan</div>
+        <div class="fname">Plan Estudio</div>
+        <div class="ffor">Tu productor de planta, cada mes</div>
+        <div class="fprice"><sup>$</sup>3,900 <em>+ IVA / mes</em></div>
+        <div class="fnote">Sale en $1,300 por pieza</div>
         <ul>
-          <li>Guion y storyboard previos</li>
+          <li>3 producciones al mes, tú decides cuándo</li>
+          <li>Guion y storyboard antes de cada rodaje</li>
           <li>Rodaje con gimbal y luz controlada</li>
-          <li>Gradación de color cinematográfica</li>
-          <li>Tres piezas: 9:16, 16:9 y teaser de 15 seg</li>
-          <li>Música licenciada y diseño sonoro</li>
+          <li>Color cinematográfico y música licenciada</li>
+          <li>Tres formatos por pieza: 9:16, 16:9 y teaser de 15 seg</li>
+          <li>Agenda apartada: tú entras primero</li>
           <li>Dos rondas de ajustes</li>
         </ul>
-        <a class="btn solid block" href="#agendar">Agendar</a>
+        <a class="btn solid block" href="#agendar" data-pack="Plan Estudio — $3,900 + IVA al mes">Apartar mi lugar</a>
       </div>
 
       <div class="frame">
-        <div class="fscene mono">Take 03</div>
         <div class="fname">Patrimonial</div>
-        <div class="ffor">Desde $10M y desarrollos</div>
-        <div class="fprice"><sup>$</sup>8,900</div>
-        <div class="fnote">Por producción</div>
+        <div class="ffor">Residencias de lujo y desarrollos</div>
+        <div class="fprice"><em>Por cotización</em></div>
+        <div class="fnote">Platicamos y te mando número</div>
         <ul>
-          <li>Todo lo del paquete Firma</li>
+          <li>Sesión de dirección antes del rodaje</li>
           <li>Tomas aéreas con dron</li>
           <li>Rodaje en golden hour</li>
           <li>Talento en cuadro dirigido</li>
-          <li>Cinco piezas y fotografía fija</li>
-          <li>Sesión de dirección previa</li>
+          <li>Fotografía fija incluida</li>
+          <li>Piezas para portal, redes y presentación</li>
         </ul>
-        <a class="btn line block" href="#agendar">Agendar</a>
+        <a class="btn line block" href="#agendar" data-pack="Patrimonial — quiero cotización">Pedir cotización</a>
       </div>
 
     </div>
 
-    <div class="brief" style="margin-top:22px;">
-      <div class="bcard">
-        <div class="bt mono">Solo edición · $890</div>
-        <p style="font-size:14.5px;margin-bottom:18px;">Usted graba con su equipo, yo lo
-          convierto en una pieza publicable. Incluye locución, textos, música y color.</p>
-        <a class="btn teal block" href="enviar.html">Subir mi material</a>
+    <div class="mathbox">
+      <p><strong>Ponlo en perspectiva.</strong> Una comisión promedio en Morelos ronda los
+        $150,000. El Plan Estudio completo es el <span class="amber">2.6%</span> de una sola
+        operación — y te da 36 piezas al año.</p>
+    </div>
+
+    <div class="extras">
+      <div class="xcard">
+        <div>
+          <b>Solo edición · $890 + IVA</b>
+          <span>Tú grabas con tu equipo, yo lo convierto en pieza publicable.
+            Incluye locución, textos, música y color.</span>
+        </div>
+        <a class="btn teal" href="enviar.html">Subir mi material</a>
       </div>
-      <div class="bcard">
-        <div class="bt mono">Estudio · $3,900 al mes</div>
-        <p style="font-size:14.5px;margin-bottom:18px;">Tres producciones Esencial cada mes con
-          agenda prioritaria. Sale en $1,300 por pieza. Permanencia mínima de tres meses.</p>
-        <a class="btn teal block" href="#agendar">Solicitar</a>
+      <div class="xcard">
+        <div>
+          <b>¿Eres afiliado o traes convenio?</b>
+          <span>Los asesores de Verificados Inmobiliarios Morelos y las oficinas con convenio
+            corporativo tienen tarifa institucional, distinta a la de esta página.</span>
+        </div>
+        <a class="btn teal" id="convenioBtn" href="#">Ver mi tarifa</a>
       </div>
     </div>
   </div>
@@ -483,38 +406,31 @@
 
 <div class="strip"></div>
 
+<!-- ================= BRIEF ================= -->
 <section>
   <div class="wrap">
-    <div class="shead narrow" style="margin-left:0;">
-      <div class="clap">
-        <svg viewBox="0 0 32 32" fill="none">
-          <rect x="2" y="9" width="20" height="15" rx="2" stroke="#3FA9A0" stroke-width="1.6"/>
-          <path d="M22 15l8-5v13l-8-5z" stroke="#E8A33D" stroke-width="1.5" stroke-linejoin="round"/>
-          <circle cx="8.5" cy="6" r="3" stroke="#3FA9A0" stroke-width="1.4"/>
-          <circle cx="16.5" cy="6" r="3" stroke="#3FA9A0" stroke-width="1.4"/>
-        </svg>
-        <span class="mono">Escena 04 · Brief de producción</span>
-      </div>
-      <h2>Qué necesito<br>y qué recibe.</h2>
-      <p class="lead" style="margin-top:14px;">Sin sorpresas y sin letras chiquitas.
+    <div class="shead narrow">
+      <span class="mono eyebrow">Brief de producción</span>
+      <h2>Qué necesito<br>y qué recibes.</h2>
+      <p class="lead" style="margin-top:13px;">Sin sorpresas y sin letras chiquitas.
         Esto es lo que hace que una producción salga a tiempo y quede bien.</p>
     </div>
 
     <div class="brief">
       <div class="bcard">
-        <div class="bt mono">Lo que necesito de usted</div>
+        <div class="bt mono">Lo que necesito de ti</div>
         <ul>
           <li>Acceso libre a la propiedad el día del rodaje</li>
           <li>Inmueble limpio, ordenado e iluminado</li>
           <li>Ficha con precio, metros, recámaras y baños</li>
-          <li>Tres puntos que hacen única la propiedad</li>
-          <li>Nombre y teléfono para el cierre en pantalla</li>
-          <li>Logotipo y manual de marca, si aplica</li>
-          <li>Reserva con dos días de anticipación</li>
+          <li>Tres cosas que hacen única a esa propiedad</li>
+          <li>Tu nombre y teléfono para el cierre en pantalla</li>
+          <li>Tu logotipo, si aplica</li>
+          <li>Que apartes con dos días de anticipación</li>
         </ul>
       </div>
       <div class="bcard out">
-        <div class="bt mono">Lo que usted recibe</div>
+        <div class="bt mono">Lo que recibes</div>
         <ul>
           <li>Archivo MP4 listo para publicar</li>
           <li>Vertical 9:16 optimizado para Reels y TikTok</li>
@@ -531,38 +447,29 @@
 
 <div class="strip"></div>
 
+<!-- ================= PROCESO ================= -->
 <section>
   <div class="wrap">
-    <div class="shead narrow" style="margin-left:0;">
-      <div class="clap">
-        <svg viewBox="0 0 32 32" fill="none">
-          <rect x="4" y="6" width="24" height="21" rx="2" stroke="#3FA9A0" stroke-width="1.6"/>
-          <path d="M4 12h24" stroke="#3FA9A0" stroke-width="1.6"/>
-          <path d="M11 3v5M21 3v5" stroke="#E8A33D" stroke-width="1.6" stroke-linecap="round"/>
-          <circle cx="11" cy="18" r="1.6" fill="#E8A33D"/>
-          <circle cx="16" cy="18" r="1.6" fill="#3FA9A0"/>
-          <circle cx="21" cy="18" r="1.6" fill="#3FA9A0"/>
-        </svg>
-        <span class="mono">Escena 05 · Proceso</span>
-      </div>
+    <div class="shead narrow">
+      <span class="mono eyebrow">Proceso</span>
       <h2>De la llamada<br>a la publicación.</h2>
     </div>
 
-    <div class="proc narrow" style="margin-left:0;">
+    <div class="narrow">
       <div class="pstep"><div class="pn mono">01</div>
-        <div><h3>Agenda</h3><p>Elige fecha, hora y dirección aquí abajo.
-          Confirmo por WhatsApp en menos de dos horas.</p></div></div>
+        <div><h3>Apartas</h3><p>Eliges fecha, hora y dirección aquí abajo.
+          Te confirmo por WhatsApp en menos de dos horas.</p></div></div>
       <div class="pstep"><div class="pn mono">02</div>
-        <div><h3>Ficha</h3><p>Llena los datos de la propiedad en el PDF que le mando.
-          Diez minutos, y de ahí salen los textos y la locución.</p></div></div>
+        <div><h3>Llenas la ficha</h3><p>Los datos de la propiedad, en diez minutos.
+          De ahí salen los textos y la locución.</p></div></div>
       <div class="pstep"><div class="pn mono">03</div>
-        <div><h3>Rodaje</h3><p>Llego con equipo propio. Entre 60 y 120 minutos según
-          el paquete. Usted no tiene que estar presente.</p></div></div>
+        <div><h3>Grabo</h3><p>Llego con equipo propio. Entre 60 y 120 minutos
+          según el paquete. No necesitas estar presente.</p></div></div>
       <div class="pstep"><div class="pn mono">04</div>
-        <div><h3>Guion</h3><p>Le mando los textos y la narrativa para su visto bueno
-          antes de grabar la locución.</p></div></div>
+        <div><h3>Apruebas el guion</h3><p>Te mando los textos y la narrativa para tu
+          visto bueno antes de grabar la locución.</p></div></div>
       <div class="pstep"><div class="pn mono">05</div>
-        <div><h3>Entrega</h3><p>Recibe la pieza terminada en tres días hábiles,
+        <div><h3>Publicas</h3><p>Recibes la pieza terminada en tres días hábiles,
           con una ronda de ajustes incluida.</p></div></div>
     </div>
   </div>
@@ -570,36 +477,35 @@
 
 <div class="strip"></div>
 
+<!-- ================= AGENDAR ================= -->
 <section id="agendar">
   <div class="wrap narrow">
     <div class="shead">
-      <div class="clap">
-        <svg viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="13" stroke="#3FA9A0" stroke-width="1.6"/>
-          <path d="M16 8v8l6 4" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <span class="mono">Escena 06 · Agendar</span>
-      </div>
-      <h2>Reserve su<br>producción.</h2>
-      <p class="lead" style="margin-top:14px;">Elija fecha y hora. Al enviar se abre WhatsApp
-        con todos los datos ya escritos — solo tiene que darle enviar.</p>
+      <span class="mono eyebrow">Agendar</span>
+      <h2>Aparta tu<br>rodaje.</h2>
+      <p class="lead" style="margin-top:13px;">Elige fecha y hora. Al enviar se abre WhatsApp
+        con todos los datos ya escritos — nada más le das enviar.</p>
     </div>
 
-    <form id="bookingForm">
+    <form id="bookingForm" novalidate>
       <div class="field">
         <label for="paquete">Paquete</label>
         <select id="paquete">
-          <option>Esencial — $1,490</option>
-          <option selected>Firma — $3,900</option>
-          <option>Patrimonial — $8,900</option>
-          <option>Solo edición — $890</option>
-          <option>Estudio — $3,900 al mes</option>
-          <option>No estoy seguro, quiero asesoría</option>
+          <option>Pieza única — $1,490 + IVA</option>
+          <option selected>Plan Estudio — $3,900 + IVA al mes</option>
+          <option>Patrimonial — quiero cotización</option>
+          <option>Solo edición — $890 + IVA</option>
+          <option>Tarifa de convenio (afiliado / oficina)</option>
+          <option>No sé cuál me conviene, quiero asesoría</option>
         </select>
       </div>
       <div class="field">
-        <label for="nombre">Su nombre</label>
+        <label for="nombre">Tu nombre</label>
         <input id="nombre" type="text" placeholder="Nombre y apellido" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="inmobiliaria">Inmobiliaria u oficina <span style="text-transform:none;letter-spacing:0;">(opcional)</span></label>
+        <input id="inmobiliaria" type="text" placeholder="Century 21, RE/MAX, independiente..." autocomplete="organization">
       </div>
       <div class="row2">
         <div class="field">
@@ -614,7 +520,7 @@
             <option>12:00</option>
             <option>14:00</option>
             <option>16:00</option>
-            <option>18:00 — golden hour</option>
+            <option>Golden hour — te confirmo la hora exacta</option>
           </select>
         </div>
       </div>
@@ -623,58 +529,55 @@
         <input id="direccion" type="text" placeholder="Calle, número y colonia">
       </div>
       <div class="field">
-        <label for="detalle">Algo que deba saber</label>
+        <label for="detalle">Algo que deba saber <span style="text-transform:none;letter-spacing:0;">(opcional)</span></label>
         <textarea id="detalle" rows="3" placeholder="Tipo de inmueble, precio de lista, si está habitada..."></textarea>
       </div>
-      <button type="submit" class="btn solid block">Enviar solicitud por WhatsApp</button>
-      <p class="fhint">Confirmo disponibilidad el mismo día · Reserva con dos días de anticipación</p>
+      <button type="submit" class="btn solid block" id="sendBtn">Enviar por WhatsApp</button>
+      <p class="formmsg" id="formmsg"></p>
+      <p class="fhint">Te confirmo disponibilidad el mismo día<br>
+        Aparta con dos días de anticipación</p>
     </form>
   </div>
 </section>
 
 <div class="strip"></div>
 
+<!-- ================= CONFIANZA ================= -->
 <section>
   <div class="wrap narrow">
     <div class="shead">
-      <div class="clap">
-        <svg viewBox="0 0 32 32" fill="none">
-          <path d="M16 3l11 4v9c0 7-4.6 11.4-11 13-6.4-1.6-11-6-11-13V7l11-4z" stroke="#3FA9A0" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M11 16l3.5 3.5L21 13" stroke="#E8A33D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="mono">Escena 07 · Confianza</span>
-      </div>
-      <h2>Reglas claras,<br>desde el inicio.</h2>
+      <span class="mono eyebrow">Reglas del trato</span>
+      <h2>Claras desde<br>el primer día.</h2>
     </div>
 
     <div class="tr">
       <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="13" rx="2" stroke="#E8A33D" stroke-width="1.5"/><path d="M2 10h20" stroke="#E8A33D" stroke-width="1.5"/></svg>
-      <div><b>Anticipo del 50%</b><span>Se paga al confirmar la fecha, con transferencia o
-        tarjeta en línea. El resto contra entrega. Recibe comprobante de cada pago.</span></div>
+      <div><b>Anticipo del 50%</b><span>Lo pagas al confirmar la fecha, con tarjeta, SPEI o
+        efectivo en OXXO. El resto contra entrega. Recibes comprobante de cada pago.</span></div>
     </div>
     <div class="tr">
       <svg viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 3-6.7" stroke="#E8A33D" stroke-width="1.5" stroke-linecap="round"/><path d="M3 3v5h5" stroke="#E8A33D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div><b>Si no le gusta, lo ajusto</b><span>Una ronda de cambios incluida en todos los
-        paquetes. En Firma y Patrimonial son dos rondas.</span></div>
+      <div><b>Si no te gusta, lo ajusto</b><span>Una ronda de cambios incluida en todos los
+        paquetes. En Plan Estudio y Patrimonial son dos rondas.</span></div>
     </div>
     <div class="tr">
       <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="#E8A33D" stroke-width="1.5"/><path d="M3 10h18M8 2v5M16 2v5" stroke="#E8A33D" stroke-width="1.5" stroke-linecap="round"/></svg>
-      <div><b>Fecha garantizada</b><span>Si por causa mía no puedo grabar el día acordado,
-        la siguiente producción va sin costo. Su agenda vale.</span></div>
+      <div><b>Tu fecha vale</b><span>Si por causa mía no puedo grabar el día acordado,
+        reagendo en menos de 48 horas o te devuelvo el anticipo completo.</span></div>
     </div>
     <div class="tr">
       <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 3v6c0 5-3.4 8.4-8 9.6C7.4 20.4 4 17 4 12V6l8-3z" stroke="#E8A33D" stroke-width="1.5" stroke-linejoin="round"/></svg>
-      <div><b>El material es suyo</b><span>Cesión de derechos para uso comercial ilimitado
-        en sus canales. Conservo los originales 30 días por si necesita otra versión.</span></div>
+      <div><b>El material es tuyo</b><span>Cesión de derechos para uso comercial ilimitado
+        en tus canales. Conservo los originales 30 días por si necesitas otra versión.</span></div>
     </div>
     <div class="tr">
       <svg viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6z" stroke="#E8A33D" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 2v5h5M9 13h7M9 17h7" stroke="#E8A33D" stroke-width="1.5" stroke-linecap="round"/></svg>
-      <div><b>Facturación</b><span>Emito factura fiscal. Los precios no incluyen IVA.
+      <div><b>Factura</b><span>Emito factura fiscal. Los precios son antes de IVA.
         Viáticos fuera de Cuernavaca se cotizan antes de confirmar.</span></div>
     </div>
 
-    <div style="margin-top:32px;display:grid;gap:12px;">
-      <a class="btn solid block" href="PAGO_ANTICIPO_URL" target="_blank" rel="noopener">Pagar anticipo en línea</a>
+    <div style="margin-top:30px;display:grid;gap:10px;">
+      <a class="btn solid block" id="payBtn" href="#agendar">Reservar mi producción</a>
       <a class="btn teal block" href="enviar.html">Enviar material y ficha</a>
     </div>
   </div>
@@ -683,54 +586,244 @@
 <div class="strip"></div>
 
 <section>
-  <div class="wrap narrow" style="text-align:center;">
-    <blockquote>No estamos vendiendo videos. Estamos profesionalizando la imagen del
-      asesor inmobiliario en Morelos.
+  <div class="wrap narrow" style="text-align:center;margin:0 auto;">
+    <blockquote>No vendo videos. Estoy profesionalizando la imagen
+      del asesor inmobiliario en Morelos.
       <cite>Enrique Neri</cite></blockquote>
-    <a class="btn solid" style="margin-top:40px;" href="#agendar">Agendar producción</a>
+    <a class="btn solid" style="margin-top:34px;" href="#agendar">Agendar mi rodaje</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap narrow">
     <div class="fn">Enrique Neri</div>
-    <p>Producción cinematográfica inmobiliaria · Cuernavaca, Morelos<br>
+    <p>Producción de video inmobiliario · Cuernavaca, Morelos<br>
       <a href="https://wa.me/527779855687" style="color:var(--amber);">777 985 5687</a> ·
       <a href="mailto:emtzneri@icloud.com" style="color:var(--amber);">emtzneri@icloud.com</a></p>
-    <p class="legal">Precios en pesos mexicanos, no incluyen IVA. La cotización final depende
+    <p class="legal">Precios en pesos mexicanos, antes de IVA. La cotización final depende
       de la ubicación, el tamaño del inmueble y los requerimientos de rodaje.
-      Reserva sujeta a disponibilidad de agenda.</p>
+      Disponibilidad sujeta a agenda.</p>
   </div>
 </footer>
 
 <script>
-  var WA = "527779855687";
+/* =========================================================================
+   CONFIGURACIÓN — esto es lo único que necesitas tocar
+   ========================================================================= */
 
-  document.getElementById('bookingForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var g = function(id){ return (document.getElementById(id).value || '').trim(); };
-    var f = g('fecha');
-    if (f){ var p = f.split('-'); f = p[2] + '/' + p[1] + '/' + p[0]; }
-    var L = ['Hola Enrique, quiero agendar una produccion.', ''];
-    L.push('Paquete: ' + g('paquete'));
-    if (g('nombre'))    L.push('Nombre: ' + g('nombre'));
-    if (f)              L.push('Fecha: ' + f);
-    L.push('Hora: ' + g('hora'));
-    if (g('direccion')) L.push('Direccion: ' + g('direccion'));
-    if (g('detalle'))   L.push('Notas: ' + g('detalle'));
-    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(L.join('\n')), '_blank');
+var WA = "527779855687";           // tu WhatsApp con lada de país
+
+/* --- 1. TUS REELS ---------------------------------------------------------
+   Cuando tengas cada video listo, pega su dirección en "src".
+   Déjalo en "" y se muestra el marco de "en producción" (nunca se ve roto).
+   Los videos deben ser verticales 9:16, MP4 (H.264), de 15 a 25 segundos,
+   y de menos de 6 MB cada uno para que carguen rápido en celular.
+   Si el archivo se llama reel-1.mp4 y lo subes junto a esta página,
+   src es simplemente "reel-1.mp4".
+--------------------------------------------------------------------------- */
+var REELS = [
+  { src:"reel-1.mp4", poster:"", label:"Amenidades · Alberca y jardín" },
+  { src:"reel-2.mp4", poster:"", label:"Recorrido narrado · Vista Hermosa" },
+  { src:"reel-3.mp4", poster:"", label:"Exteriores · Fachada y acabados" }
+];
+
+/* --- 2. TU LINK DE MERCADO PAGO -------------------------------------------
+   Pega aquí el link de pago que generas en la app de Mercado Pago.
+   Mientras esté en "", el botón manda a WhatsApp a pedirlo (nunca queda muerto).
+--------------------------------------------------------------------------- */
+var MP_LINKS = {
+  piezaReserva: "https://mpago.la/1hqvQww",
+  piezaSaldo: "https://mpago.la/29qE3ZM",
+  piezaCompleto: "https://mpago.la/1VqkuQj",
+  planEstudio: "https://mpago.la/2zcAtWE",
+  edicionReserva: "https://mpago.la/2RQbgfg",
+  edicionSaldo: "https://mpago.la/1CmtGui",
+  edicionCompleto: "https://mpago.la/2h2LFvd"
+};
+
+/* --- 3. CAPTURA DE PROSPECTOS (opcional pero muy recomendable) -------------
+   Pega aquí la URL de tu formulario de Formspree o de un webhook de Make
+   conectado a Airtable. Con esto guardas el prospecto AUNQUE la persona
+   no llegue a apretar enviar dentro de WhatsApp.
+   Déjalo en "" y simplemente no se guarda nada.
+--------------------------------------------------------------------------- */
+var LEAD_ENDPOINT = "";
+
+/* ========================= de aquí para abajo no toques ================== */
+
+(function(){
+  "use strict";
+
+  /* ---- reels ---- */
+  var box = document.getElementById('reels');
+  REELS.forEach(function(r, i){
+    var n = String(i+1).padStart(2,'0');
+    var d = document.createElement('div');
+    if (!r.src){
+      d.className = 'reel empty';
+      d.innerHTML = '<div class="ph"><b>Reel '+n+'</b>En producción</div>';
+    } else {
+      d.className = 'reel';
+      d.innerHTML =
+        '<video src="'+r.src+'"'+(r.poster?' poster="'+r.poster+'"':'')+
+        ' muted loop playsinline autoplay preload="metadata"></video>'+
+        '<div class="snd" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none">'+
+        '<path d="M11 5 6 9H3v6h3l5 4z" fill="#EFEDE8"/>'+
+        '<path class="x1" d="M17 9.5 21 14M21 9.5 17 14" stroke="#EFEDE8" stroke-width="1.8" stroke-linecap="round"/>'+
+        '</svg></div>'+
+        '<div class="cap">'+r.label+'</div>';
+      d.addEventListener('click', function(){
+        var v = d.querySelector('video');
+        v.muted = !v.muted;
+        if(!v.muted){
+          // solo un reel con sonido a la vez
+          box.querySelectorAll('video').forEach(function(o){ if(o!==v) o.muted = true; });
+          v.play();
+        }
+        d.querySelector('.x1').style.display = v.muted ? '' : 'none';
+      });
+    }
+    box.appendChild(d);
   });
 
-  var d = new Date(); d.setDate(d.getDate() + 2);
-  document.getElementById('fecha').min = d.toISOString().split('T')[0];
-
-  var f0 = 0, tcEl = document.getElementById('tc');
-  setInterval(function(){
+  /* ---- timecode: se detiene si la pestaña no está visible ---- */
+  var tcEl = document.getElementById('tc'), f0 = 0, timer = null;
+  var z = function(n){ return (n<10?'0':'') + n; };
+  function tick(){
     f0++;
-    var fr = f0 % 24, s = Math.floor(f0/24)%60, m = Math.floor(f0/1440)%60;
-    var z = function(n){ return (n<10?'0':'') + n; };
-    tcEl.textContent = '00:' + z(m) + ':' + z(s) + ':' + z(fr);
-  }, 42);
+    tcEl.textContent = '00:' + z(Math.floor(f0/1440)%60) + ':' + z(Math.floor(f0/24)%60) + ':' + z(f0%24);
+  }
+  function start(){ if(!timer) timer = setInterval(tick, 42); }
+  function stop(){ clearInterval(timer); timer = null; }
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+  document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+
+  /* ---- fecha mínima: dos días ---- */
+  var fechaEl = document.getElementById('fecha');
+  var d2 = new Date(); d2.setDate(d2.getDate() + 2);
+  fechaEl.min = d2.toISOString().split('T')[0];
+
+  /* ---- los botones de cada paquete preseleccionan el paquete ---- */
+  var sel = document.getElementById('paquete');
+  document.querySelectorAll('[data-pack]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var want = a.getAttribute('data-pack');
+      [].forEach.call(sel.options, function(o,i){ if(o.text === want) sel.selectedIndex = i; });
+    });
+  });
+  document.getElementById('convenioBtn').addEventListener('click', function(e){
+    e.preventDefault();
+    [].forEach.call(sel.options, function(o,i){ if(o.text.indexOf('convenio') > -1) sel.selectedIndex = i; });
+    document.getElementById('agendar').scrollIntoView({behavior:'smooth'});
+  });
+
+  /* ---- botón de reserva ----
+     El enlace cambia según el paquete seleccionado.
+     Plan Estudio queda pendiente hasta agregar su link de Mercado Pago. */
+  var payBtn = document.getElementById('payBtn');
+
+  function getReservationLink(){
+    var packageText = sel.value || "";
+    if (packageText.indexOf("Pieza única") === 0) return MP_LINKS.piezaReserva;
+    if (packageText.indexOf("Solo edición") === 0) return MP_LINKS.edicionReserva;
+    if (packageText.indexOf("Plan Estudio") === 0) return MP_LINKS.planEstudio;
+    return "";
+  }
+
+  function updatePayButton(){
+    var link = getReservationLink();
+    if (link) {
+      payBtn.href = link;
+      payBtn.target = "_blank";
+      payBtn.rel = "noopener";
+      payBtn.textContent = "Reservar mi producción";
+    } else {
+      payBtn.removeAttribute("target");
+      payBtn.textContent = "Solicitar link de reserva";
+    }
+  }
+
+  updatePayButton();
+  sel.addEventListener('change', updatePayButton);
+
+  payBtn.addEventListener('click', function(e){
+    var link = getReservationLink();
+    if (link) return;
+    e.preventDefault();
+    go('Hola Enrique, quiero reservar mi producción. ¿Me compartes el link de pago correspondiente?');
+  });
+
+  /* ---- abrir WhatsApp: location.href, NO window.open.
+         window.open lo bloquea el navegador interno de Instagram y Facebook ---- */
+  function go(texto){
+    window.location.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(texto);
+  }
+
+  /* ---- envío del formulario ---- */
+  var form = document.getElementById('bookingForm');
+  var msg  = document.getElementById('formmsg');
+  var g = function(id){ return (document.getElementById(id).value || '').trim(); };
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var faltan = [];
+    [['nombre','tu nombre'],['direccion','la dirección de la propiedad']].forEach(function(f){
+      var el = document.getElementById(f[0]);
+      if (!el.value.trim()){ el.classList.add('err'); faltan.push(f[1]); }
+      else el.classList.remove('err');
+    });
+    if (faltan.length){
+      msg.textContent = 'Falta ' + faltan.join(' y ') + '.';
+      msg.classList.add('on');
+      document.getElementById(faltan.length === 2 ? 'nombre' : 'direccion').focus();
+      return;
+    }
+    msg.classList.remove('on');
+
+    var datos = {
+      paquete: g('paquete'), nombre: g('nombre'), inmobiliaria: g('inmobiliaria'),
+      fecha: g('fecha'), hora: g('hora'), direccion: g('direccion'),
+      detalle: g('detalle'), origen: document.referrer || 'directo',
+      recibido: new Date().toISOString()
+    };
+
+    // guardar el prospecto antes de salir de la página
+    if (LEAD_ENDPOINT){
+      try {
+        var payload = JSON.stringify(datos);
+        if (navigator.sendBeacon){
+          navigator.sendBeacon(LEAD_ENDPOINT, new Blob([payload],{type:'application/json'}));
+        } else {
+          fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
+            body:payload, keepalive:true, mode:'no-cors'});
+        }
+      } catch(err){ /* si falla, seguimos a WhatsApp de todos modos */ }
+    }
+
+    var f = datos.fecha;
+    if (f){ var p = f.split('-'); f = p[2] + '/' + p[1] + '/' + p[0]; }
+
+    var L = ['Hola Enrique, quiero apartar un rodaje.', ''];
+    L.push('Paquete: ' + datos.paquete);
+    L.push('Nombre: ' + datos.nombre);
+    if (datos.inmobiliaria) L.push('Inmobiliaria: ' + datos.inmobiliaria);
+    if (f) L.push('Fecha: ' + f);
+    L.push('Hora: ' + datos.hora);
+    L.push('Dirección: ' + datos.direccion);
+    if (datos.detalle) L.push('Notas: ' + datos.detalle);
+
+    document.getElementById('sendBtn').textContent = 'Abriendo WhatsApp...';
+    go(L.join('\n'));
+  });
+
+  ['nombre','direccion'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', function(){
+      this.classList.remove('err'); msg.classList.remove('on');
+    });
+  });
+
+})();
 </script>
 
 </body>
