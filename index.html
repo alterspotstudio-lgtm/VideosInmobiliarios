@@ -77,12 +77,23 @@
   .corner.bl{bottom:12px;left:12px;border-right:0;border-top:0;}
   .corner.br{bottom:12px;right:12px;border-left:0;border-top:0;}
 
-  .reels{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  /* Móvil: carrusel deslizable, un reel a la vez.
+     El borde del siguiente asomando es lo que indica que se desliza. */
+  .reels{
+    display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin:0 -22px;padding:0 22px;
+  }
+  .reels::-webkit-scrollbar{display:none;}
+  .reels > *{flex:0 0 78%;scroll-snap-align:center;}
+  .swipe{
+    display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);
+  }
+  .swipe svg{width:13px;height:13px;}
   .reel{position:relative;aspect-ratio:9/16;background:#0A0F14;border:1px solid var(--edge);overflow:hidden;cursor:pointer;}
   .reel video{width:100%;height:100%;object-fit:cover;display:block;}
-  .reel .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;z-index:2;
-    background:linear-gradient(transparent,rgba(7,9,12,.92));
-    font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--paper);}
   .reel .snd{position:absolute;top:8px;right:8px;z-index:3;width:26px;height:26px;border-radius:50%;
     background:rgba(7,9,12,.7);border:1px solid var(--edge);display:grid;place-items:center;}
   .reel .snd svg{width:13px;height:13px;}
@@ -218,7 +229,12 @@
   @media(min-width:640px){
     .row2{grid-template-columns:1fr 1fr;}
     .viewer{padding:44px 34px;}
-    .reels{gap:16px;}
+    .reels{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+      overflow:visible;margin:0;padding:0;
+    }
+    .reels > *{flex:none;}
+    .swipe{display:none;}
   }
   @media(min-width:880px){
     .vs{grid-template-columns:1fr 1fr;}
@@ -252,6 +268,13 @@
       <div class="corner tl"></div><div class="corner tr"></div>
       <div class="corner bl"></div><div class="corner br"></div>
       <div class="reels" id="reels"></div>
+      <div class="swipe">
+        <span>Desliza para ver más</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
     </div>
 
     <div class="herotext narrow">
@@ -622,9 +645,9 @@ var WA = "527779855687";           // tu WhatsApp con lada de país
    src es simplemente "reel-1.mp4".
 --------------------------------------------------------------------------- */
 var REELS = [
-  { src:"reel-1.mp4", poster:"", label:"Amenidades · Alberca y jardín" },
-  { src:"reel-2.mp4", poster:"", label:"Recorrido narrado · Vista Hermosa" },
-  { src:"reel-3.mp4", poster:"", label:"Exteriores · Fachada y acabados" }
+  { src:"reel-1.mp4", poster:"", label:"Reel de producción 1" },
+  { src:"reel-2.mp4", poster:"", label:"Reel de producción 2" },
+  { src:"reel-3.mp4", poster:"", label:"Reel de producción 3" }
 ];
 
 /* --- 2. TU LINK DE MERCADO PAGO -------------------------------------------
@@ -670,8 +693,8 @@ var LEAD_ENDPOINT = "";
         '<div class="snd" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none">'+
         '<path d="M11 5 6 9H3v6h3l5 4z" fill="#EFEDE8"/>'+
         '<path class="x1" d="M17 9.5 21 14M21 9.5 17 14" stroke="#EFEDE8" stroke-width="1.8" stroke-linecap="round"/>'+
-        '</svg></div>'+
-        '<div class="cap">'+r.label+'</div>';
+        '</svg></div>';
+      d.title = r.label;
       d.addEventListener('click', function(){
         var v = d.querySelector('video');
         v.muted = !v.muted;
@@ -682,9 +705,34 @@ var LEAD_ENDPOINT = "";
         }
         d.querySelector('.x1').style.display = v.muted ? '' : 'none';
       });
+
+      /* si el video no carga (nombre mal escrito, formato no soportado,
+         archivo ausente) volvemos al marco de "en producción" en vez de
+         dejar un cuadro negro, y avisamos en la consola cuál falló */
+      var vid = d.querySelector('video');
+      vid.addEventListener('error', function(){
+        console.warn('[reels] No se pudo cargar: "' + r.src +
+          '". Revisa que el archivo exista, se llame exactamente así ' +
+          '(mayúsculas incluidas) y esté junto al index.html.');
+        d.className = 'reel empty';
+        d.innerHTML = '<div class="ph"><b>Reel ' + n + '</b>En producción</div>';
+      });
     }
     box.appendChild(d);
   });
+
+  /* ---- solo se reproduce el reel visible: ahorra datos y batería en celular ---- */
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var v = e.target.querySelector('video');
+        if (!v) return;
+        if (e.isIntersecting) { v.play().catch(function(){}); }
+        else { v.pause(); }
+      });
+    }, { threshold: 0.5 });
+    box.querySelectorAll('.reel').forEach(function(el){ io.observe(el); });
+  }
 
   /* ---- timecode: se detiene si la pestaña no está visible ---- */
   var tcEl = document.getElementById('tc'), f0 = 0, timer = null;
