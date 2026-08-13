@@ -85,7 +85,12 @@
     margin:0 -22px;padding:0 22px;
   }
   .reels::-webkit-scrollbar{display:none;}
-  .reels > *{flex:0 0 78%;scroll-snap-align:center;}
+  .reels > *{
+    flex:0 0 74%;scroll-snap-align:center;
+    opacity:.4;transform:scale(.94);
+    transition:opacity .35s ease,transform .35s ease;
+  }
+  .reels > *.on{opacity:1;transform:scale(1);}
   .swipe{
     display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;
     font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;
@@ -233,7 +238,7 @@
       display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
       overflow:visible;margin:0;padding:0;
     }
-    .reels > *{flex:none;}
+    .reels > *{flex:none;opacity:1;transform:none;}
     .swipe{display:none;}
   }
   @media(min-width:880px){
@@ -644,6 +649,10 @@ var WA = "527779855687";           // tu WhatsApp con lada de país
    Si el archivo se llama reel-1.mp4 y lo subes junto a esta página,
    src es simplemente "reel-1.mp4".
 --------------------------------------------------------------------------- */
+/* Cuál de los tres es el reel principal: el que sale centrado al abrir en
+   celular. 2 = el de en medio. Es donde aparece Enrique hablando. */
+var REEL_PRINCIPAL = 2;
+
 var REELS = [
   { src:"reel-1.mp4", poster:"", label:"Reel de producción 1" },
   { src:"reel-2.mp4", poster:"", label:"Reel de producción 2" },
@@ -727,12 +736,23 @@ var LEAD_ENDPOINT = "";
       entries.forEach(function(e){
         var v = e.target.querySelector('video');
         if (!v) return;
-        if (e.isIntersecting) { v.play().catch(function(){}); }
-        else { v.pause(); }
+        if (e.isIntersecting) { e.target.classList.add('on'); v.play().catch(function(){}); }
+        else { e.target.classList.remove('on'); v.pause(); }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.6 });
     box.querySelectorAll('.reel').forEach(function(el){ io.observe(el); });
   }
+
+  /* Centrar el reel principal al abrir. Se mueve solo el carrusel,
+     nunca la página: por eso scrollLeft y no scrollIntoView. */
+  function centrarPrincipal(){
+    var el = box.children[REEL_PRINCIPAL - 1];
+    if (!el || box.scrollWidth <= box.clientWidth) return;
+    el.classList.add('on');
+    box.scrollLeft = el.offsetLeft - (box.clientWidth - el.clientWidth) / 2;
+  }
+  requestAnimationFrame(function(){ requestAnimationFrame(centrarPrincipal); });
+  window.addEventListener('load', centrarPrincipal);
 
   /* ---- timecode: se detiene si la pestaña no está visible ---- */
   var tcEl = document.getElementById('tc'), f0 = 0, timer = null;
